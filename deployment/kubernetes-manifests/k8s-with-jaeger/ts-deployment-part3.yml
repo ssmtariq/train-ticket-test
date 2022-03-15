@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: ts-ui-dashboard
 spec:
+  selector:
+    matchLabels:
+      app: ts-ui-dashboard
   replicas: 1
   template:
     metadata:
@@ -11,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ts-ui-dashboard
-        image: codewisdom/ts-ui-dashboard:0.0.4
+        image: codewisdom/ts-ui-dashboard-with-jaeger:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
