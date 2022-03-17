@@ -39,6 +39,7 @@ request = function()
   local num_media = math.random(0, 4)
   local media_ids = '['
   local media_types = '['
+  local server_ip_port = '#'
 
   for i = 0, num_user_mentions, 1 do
     local user_mention_id
@@ -65,7 +66,7 @@ request = function()
   media_types = media_types:sub(1, #media_types - 1) .. "]"
 
 local method = "POST"
-  local path = "http://141.215.12.243:8080/api/v1/preserveservice/preserve"
+  local path = server_ip_port .. "/api/v1/preserveservice/preserve"
   local headers = {}
   local body
   headers["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZHNlX21pY3Jvc2VydmljZSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpZCI6IjRkMmE0NmM3LTcxY2ItNGNmMS1iNWJiLWI2ODQwNmQ5ZGE2ZiIsImlhdCI6MTY0Njk0ODI3NywiZXhwIjoxNjQ2OTUxODc3fQ.5I3G49nESyBdbcjmusGqXDwX0UawpvvmctBLeV2Mu94"
