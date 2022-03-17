@@ -20,7 +20,7 @@ BASE_PATH=train-ticket-test/req_analyzer_tool
 echo "Initialized system variables"
 
 echo "STARTING WARMUP EXECUTION"
-./${BASE_PATH}/wrk -D exp -t${WARMUP_THREAD} -c${WARMUP_CONNECTION} -d${WARMUP_DURATION}s --latency -L -s ./${BASE_PATH}/scripts/train-ticket/preserve-other-service.lua http://${HOST}:${PORT}/${PATH} -R ${WARMUP_RPS}
+./${BASE_PATH}/wrk -D exp -t${WARMUP_THREAD} -c${WARMUP_CONNECTION} -d${WARMUP_DURATION}s --latency -L -s ./${BASE_PATH}/scripts/train-ticket/preserve_other_service.lua http://${HOST}:${PORT}/${PATH} -R ${WARMUP_RPS}
 
 echo "STARTING FINAL ROUND OF EXECUTION"
 for element in {1..10}
