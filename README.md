@@ -1,24 +1,22 @@
-
-
 Updated README:
 ---------------------------------
-Updating pod at cluster Master
-git clone -b feature_fix_redundant_data_transfer https://github.com/ssmtariq/train-ticket-test.git
-Cd train-ticket-test/deployment/kubernetes-manifests/k8s-with-jaeger/
-Python3 update_pod.py or rever_pod_updatepy to update or revert to original
+# Updating pod at cluster Master
+- git clone -b feature_fix_redundant_data_transfer https://github.com/ssmtariq/train-ticket-test.git
+- Cd train-ticket-test/deployment/kubernetes-manifests/k8s-with-jaeger/
+- Python3 update_pod.py or rever_pod_updatepy to update or revert to original
 
-Running steps at testing NODE
+# Running steps at testing NODE
 
-git clone -b feature_fix_redundant_data_transfer https://github.com/ssmtariq/train-ticket-test.git
-cd train-ticket-test/req_analyzer_tool
-Run make clean all
-Sudo apt update
-Install luarocks (apt-get install luarocks) , luasocket (luarocks install luasocket)
-make -B
-Edit HOST at run-test-preserve-other-service.sh to point to server IP 
-Edit server_ip_port and token and body variable at scripts/train-ticket/preserve_other_service.lua (collect these variable from UI login request)
-Test Postman request to check everything is ready to launch testing
-Run bash run-test-preserve-other-service.sh
+- git clone -b feature_fix_redundant_data_transfer https://github.com/ssmtariq/train-ticket-test.git
+- cd train-ticket-test/req_analyzer_tool
+- Run make clean all
+- Sudo apt update
+- Install luarocks (apt-get install luarocks) , luasocket (luarocks install luasocket)
+- make -B
+- Edit HOST at run-test-preserve-other-service.sh to point to server IP 
+- Edit server_ip_port and token and body variable at scripts/train-ticket/preserve_other_service.lua (collect these variable from UI login request)
+- Test Postman request to check everything is ready to launch testing
+- Run bash run-test-preserve-other-service.sh
 --------------------------------------------------
 
 
