@@ -26,7 +26,7 @@ echo "STARTING FINAL ROUND OF EXECUTION"
 for element in {1..10}
 do
     echo "Starting Execution of phase - ${element} of 10 ..."
-    ./${BASE_PATH}/wrk -D exp -t${THREAD} -c${CONNECTION} -d${DURATION}s --latency -L -s ./${BASE_PATH}/scripts/social-network/compose-post.lua http://${HOST}:${PORT}/${PATH} -R ${RPS}
+    ./${BASE_PATH}/wrk -D exp -t${THREAD} -c${CONNECTION} -d${DURATION}s --latency -L -s ./${BASE_PATH}/scripts/train-ticket/preserve_other_service.lua http://${HOST}:${PORT}/${PATH} -R ${RPS}
     echo "End Execution of phase - ${element} of 10 ..."
     echo "Thread is taking nap for a minute"
     /bin/sleep 1m
