@@ -616,7 +616,7 @@ spec:
     spec:
       containers:
       - name: ts-auth-service
-        image: codewisdom/ts-auth-service-with-jaeger:v1
+        image: ssmtariq/ts-auth-service:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 12340
