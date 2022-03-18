@@ -3,6 +3,10 @@ Updated README:
 # Updating pod at cluster Master
 - git clone -b feature_fix_redundant_data_transfer https://github.com/ssmtariq/train-ticket-test.git
 - Cd train-ticket-test/deployment/kubernetes-manifests/k8s-with-jaeger/
+- kubectl appy -f ts-deployment-part1.yml
+- kubectl appy -f  ts-deployment-part2.yml
+- kubectl appy -f  ts-deployment-part3.yml
+- kubectl set image deployment/ts-auth-service -n=default ts-auth-service=ssmtariq/ts-auth-service:v2
 - Python3 update_pod.py or rever_pod_updatepy to update or revert to original
 
 # Running steps at testing NODE
