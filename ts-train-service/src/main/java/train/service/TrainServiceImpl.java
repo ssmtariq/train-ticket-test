@@ -37,6 +37,15 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
+    public Integer retrieveAverageSpeed(String id, HttpHeaders headers) {
+        if (repository.findById(id) == null) {
+            return null;
+        } else {
+            return repository.findById(id).getAverageSpeed();
+        }
+    }
+
+    @Override
     public boolean update(TrainType trainType, HttpHeaders headers) {
         boolean result = false;
         if (repository.findById(trainType.getId()) != null) {

@@ -49,6 +49,17 @@ public class TrainController {
     }
 
     @CrossOrigin(origins = "*")
+    @GetMapping(value = "/trains/{id}/getAverageSpeed")
+    public HttpEntity retrieveAverageSpeed(@PathVariable String id, @RequestHeader HttpHeaders headers) {
+        Integer averageSpeed = trainService.retrieveAverageSpeed(id, headers);
+        if (averageSpeed == null) {
+            return ok(new Response(0, "here is no TrainType with the trainType id: " + id, null));
+        } else {
+            return ok(new Response(1, "success", averageSpeed));
+        }
+    }
+
+    @CrossOrigin(origins = "*")
     @PutMapping(value = "/trains")
     public HttpEntity update(@RequestBody TrainType trainType, @RequestHeader HttpHeaders headers) {
         boolean isUpdateSuccess = trainService.update(trainType, headers);

@@ -11,6 +11,8 @@ public interface TrainService {
 
     TrainType retrieve(String id,HttpHeaders headers);
 
+    Integer retrieveAverageSpeed(String id, HttpHeaders headers);
+
     boolean update(TrainType trainType,HttpHeaders headers);
 
     boolean delete(String id,HttpHeaders headers);
