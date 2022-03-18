@@ -14,7 +14,7 @@ Updated README:
 - Install luarocks (apt-get install luarocks) , luasocket (luarocks install luasocket)
 - make -B
 - Edit HOST at run-test-preserve-other-service.sh to point to server IP 
-- Edit server_ip_port and token and body variable at scripts/train-ticket/preserve_other_service.lua (collect these variable from UI login request)
+- Edit path and token and body variable at scripts/train-ticket/preserve_other_service.lua (collect these variable from UI login request)
 - Test Postman request to check everything is ready to launch testing
 - Run bash run-test-preserve-other-service.sh
 --------------------------------------------------
