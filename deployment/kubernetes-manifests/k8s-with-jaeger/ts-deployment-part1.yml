@@ -989,7 +989,11 @@ spec:
   selector:
     app.kubernetes.io/name: jaeger
     app.kubernetes.io/component: all-in-one
-
+  args:
+    - --reporter.grpc.host-port=jaeger-collector:14250
+    - --reporter.type=grpc
+    - --reporter.grpc.tls.enabled=true
+    - --jaeger.tags=access_token=Vc4iYtTykhCRBCrkM/+CS5S8HmtncU6yO4fM6q9Px2NOl6vm00vBxBKXVs0G1mIqc4IgDy6GM/rKnj2USFNlaYBFaYaewjLKB2/FFOcl
 ---
 
 apiVersion: v1
