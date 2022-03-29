@@ -21,3 +21,5 @@ opentracing:
     udp-sender:
       host: jaeger
       port: 6831
+    sampler-type: const
+    sampler-param: 1
