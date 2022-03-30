@@ -1248,6 +1248,15 @@ spec:
         - name: ts-train-service
           image: ssmtariq/ts-train-service:lightstep
           imagePullPolicy: Always
+          env:
+            - name: OPENTRACING_ENABLED
+              value: "true"
+            - name: JAEGER_SAMPLER_TYPE
+              value: "const"
+            - name: JAEGER_SAMPLER_PARAM
+              value: "1"
+            - name: LATENCY_SAMPLER_PARAM
+              value: "1"
           ports:
             - containerPort: 14567
           resources:
@@ -1257,12 +1266,12 @@ spec:
             limits:
               cpu: 200m
               memory: 4096Mi
-          # readinessProbe:
-          #   tcpSocket:
-          #     port: 14567
-          #   initialDelaySeconds: 160
-          #   periodSeconds: 10
-          #   timeoutSeconds: 5
+           readinessProbe:
+             tcpSocket:
+               port: 14567
+             initialDelaySeconds: 160
+             periodSeconds: 10
+             timeoutSeconds: 5
 ---
 
 apiVersion: apps/v1
@@ -1286,6 +1295,14 @@ spec:
           env:
             - name: EXT_REQUESTS
               value: "1000"
+            - name: OPENTRACING_ENABLED
+              value: "true"
+            - name: JAEGER_SAMPLER_TYPE
+              value: "const"
+            - name: JAEGER_SAMPLER_PARAM
+              value: "1"
+            - name: LATENCY_SAMPLER_PARAM
+              value: "1"
           ports:
             - containerPort: 16346
           resources:
