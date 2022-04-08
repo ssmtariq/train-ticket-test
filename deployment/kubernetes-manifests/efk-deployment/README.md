@@ -16,10 +16,31 @@ After entering the directory where this file is located, we only need to execute
 
 Note: You may make sure that these pods are in running status. Otherwise you may need to deal with these problems (such as manually pulling the image), then [uninstall EFK](https://github.com/FudanSELab/train-ticket/tree/master/deployment/efk-deployment#uninstall), and then redeploy EFK.
 
+### Create Cluster Role Binding to access Kibana UI:
+```
+cat <<EOF | kubectl create -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: open-api
+namespace: ""
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:anonymous
+  EOF
+```
+
 ### Access Kibana UI:
 
 Then you can see that the kibana service has been exposed on port 8086. Just wait a few minutes, and we can access the interface of kibana through the browser at   
 `http://ipAddress:8086/api/v1/namespaces/kube-system/services/kibana-logging/proxy` .
+or
+`http://ipAddress:6443/api/v1/namespaces/kube-system/services/kibana-logging/proxy` .
 
 ### Uninstall:
 
