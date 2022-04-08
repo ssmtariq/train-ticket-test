@@ -13,4 +13,5 @@ var3=${var2%:*}
 
 # expose the kibana service by proxy
 echo '***Expose Kibana service on masterIP:8086***'
-kubectl proxy --address=${var3} --port=8086 --accept-hosts='^*$'
+# kubectl proxy --address=${var3} --port=8086 --accept-hosts='^*$'
+kubectl proxy --address='10.10.1.1' --port=8086 --accept-hosts='^*$'
