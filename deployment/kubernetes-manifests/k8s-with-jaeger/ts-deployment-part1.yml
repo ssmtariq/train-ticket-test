@@ -886,6 +886,14 @@ spec:
         - env:
             - name: COLLECTOR_ZIPKIN_HTTP_PORT
               value: "9411"
+              #Enable the following configuration to send jaeger traces to Elasticsearch
+#            - name: ES_SERVER_URLS
+#              value: http://192.168.5.86:9200
+#            - name: ES_TAGS_AS_FIELDS_ALL
+#              value: "true"
+#            - name: SPAN_STORAGE_TYPE
+#              value: elasticsearch
+              #Enable the above configuration to send jaeger traces to Elasticsearch
           image: jaegertracing/all-in-one:1.22.0
           name: jaeger
           ports:
