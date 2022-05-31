@@ -234,8 +234,8 @@ spec:
             - containerPort: 27017
           resources:
             requests:
-              cpu: 50m
-              memory: 100Mi
+              cpu: 200m
+              memory: 1024Mi
 
 ---
 
@@ -261,8 +261,8 @@ spec:
             - containerPort: 27017
           resources:
             requests:
-              cpu: 50m
-              memory: 100Mi
+              cpu: 200m
+              memory: 1024Mi
 
 ---
 
@@ -288,8 +288,8 @@ spec:
             - containerPort: 27017
           resources:
             requests:
-              cpu: 50m
-              memory: 100Mi
+              cpu: 200m
+              memory: 1024Mi
 
 ---
 
@@ -887,7 +887,7 @@ spec:
             - name: COLLECTOR_ZIPKIN_HTTP_PORT
               value: "9411"
             - name: ES_SERVER_URLS
-              value: http://192.168.242.184:9200
+              value: http://192.168.5.2:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
