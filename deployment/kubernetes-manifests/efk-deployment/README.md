@@ -47,3 +47,5 @@ or
 When you want to delete EFK in the cluster，you just need to execute the deleteEFK.sh script:  
 `bash deleteEFK.sh`
 
+### Get Elasticsearch Servie IP
+`kubectl describe service elasticsearch-logging --namespace=kube-system`
