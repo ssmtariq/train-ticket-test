@@ -1810,7 +1810,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: EXT_REQUESTS
-              value: "1000"
+              value: "1"
             - name: OPENTRACING_ENABLED
               value: "true"
             - name: JAEGER_SAMPLER_TYPE
