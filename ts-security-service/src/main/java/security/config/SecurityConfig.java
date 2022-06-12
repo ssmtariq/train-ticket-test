@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .allowedMethods(ALL)
                         .allowedHeaders(ALL)
                         .allowCredentials(false)
-                        .maxAge(3600);
+                        .maxAge(36000000);
             }
         };
     }
