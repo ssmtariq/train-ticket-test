@@ -4,12 +4,13 @@ import org.springframework.http.HttpHeaders;
 import train.entity.TrainType;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TrainService {
     //CRUD
     boolean create(TrainType trainType, HttpHeaders headers);
 
-    TrainType retrieve(String id,HttpHeaders headers);
+    Optional<TrainType> retrieve(String id, HttpHeaders headers);
 
     Integer retrieveAverageSpeed(String id, HttpHeaders headers);
 

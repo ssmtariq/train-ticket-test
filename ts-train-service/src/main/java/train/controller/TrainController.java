@@ -9,6 +9,7 @@ import train.entity.TrainType;
 import train.service.TrainService;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -40,11 +41,11 @@ public class TrainController {
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/trains/{id}")
     public HttpEntity retrieve(@PathVariable String id, @RequestHeader HttpHeaders headers) {
-        TrainType trainType = trainService.retrieve(id, headers);
+        Optional<TrainType> trainType = trainService.retrieve(id, headers);
         if (trainType == null) {
             return ok(new Response(0, "here is no TrainType with the trainType id: " + id, null));
         } else {
-            return ok(new Response(1, "success", trainType));
+            return ok(new Response(1, "success", trainType.get()));
         }
     }
 

@@ -12,6 +12,7 @@ import route.repository.RouteRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -56,17 +57,17 @@ public class RouteServiceImpl implements RouteService {
 
             return new Response<>(1, "Save Success", route);
         } else {
-            Route route = routeRepository.findById(info.getId());
-            if (route == null) {
-                route = new Route();
-                route.setId(info.getId());
+            Optional<Route> route = routeRepository.findById(info.getId());
+            if (!route.isPresent()) {
+                route = Optional.of(new Route());
+                route.get().setId(info.getId());
             }
 
-            route.setStartStationId(info.getStartStation());
-            route.setTerminalStationId(info.getEndStation());
-            route.setStations(stationList);
-            route.setDistances(distanceList);
-            routeRepository.save(route);
+            route.get().setStartStationId(info.getStartStation());
+            route.get().setTerminalStationId(info.getEndStation());
+            route.get().setStations(stationList);
+            route.get().setDistances(distanceList);
+            routeRepository.save(route.get());
             RouteServiceImpl.LOGGER.info("Modify success");
             return new Response<>(1, "Modify success", route);
         }
@@ -75,7 +76,7 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public Response deleteRoute(String routeId, HttpHeaders headers) {
         routeRepository.removeRouteById(routeId);
-        Route route = routeRepository.findById(routeId);
+        Optional<Route> route = routeRepository.findById(routeId);
         if (route == null) {
             return new Response<>(1, "Delete Success", routeId);
         } else {
@@ -85,8 +86,8 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public Response getRouteById(String routeId, HttpHeaders headers) {
-        Route route = routeRepository.findById(routeId);
-        if (route == null) {
+        Optional<Route> route = routeRepository.findById(routeId);
+        if (!route.isPresent()) {
             return new Response<>(0, "No content with the routeId", null);
         } else {
             return new Response<>(1, success, route);

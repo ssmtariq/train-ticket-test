@@ -21,7 +21,7 @@ import java.util.Date;
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAsync
 @IntegrationComponentScan
-@EnableSwagger2
+// @EnableSwagger2
 public class ConsignPriceApplication {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConsignPriceApplication.class);

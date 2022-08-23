@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import seat.entity.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -234,15 +235,7 @@ public class SeatServiceImpl implements SeatService {
             SeatServiceImpl.LOGGER.info("[SeatService getLeftTicketOfInterval] The result of getRouteResult is {}", routeResult.toString());
 
             //Call the micro service to query for residual Ticket information: the set of the Ticket sold for the specified seat type
-            requestEntity = new HttpEntity(seatRequest, headers);
-            re3 = restTemplate.exchange(
-                    "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/tickets",
-                    HttpMethod.POST,
-                    requestEntity,
-                    new ParameterizedTypeReference<Response<LeftTicketInfo>>() {
-                    });
-            SeatServiceImpl.LOGGER.info("Get Order tickets result is : {}", re3);
-            leftTicketInfo = re3.getBody().getData();
+            leftTicketInfo = invokeOrderOtherTickets(seatRequest, headers);
 
 
             //Calls the microservice to query the total number of seats specified for that vehicle
@@ -299,6 +292,25 @@ public class SeatServiceImpl implements SeatService {
         numOfLeftTicket += unusedNum;
 
         return new Response<>(1, "Get Left Ticket of Internal Success", numOfLeftTicket);
+    }
+
+    @SperfAnno(monitorObject="invokeOrderOtherTickets")
+    public LeftTicketInfo invokeOrderOtherTickets(Seat seatRequest, HttpHeaders headers){
+        System.out.println("Seatservice.invokeOrderOtherTickets Starts...");
+        HttpEntity requestEntity = new HttpEntity(seatRequest, headers);
+        ResponseEntity<Response<LeftTicketInfo>> re3 = restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/tickets",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<Response<LeftTicketInfo>>() {
+                });
+        SeatServiceImpl.LOGGER.info("Get Order tickets result is : {}", re3);
+        LeftTicketInfo leftTickets = re3.getBody().getData();
+        if(Objects.nonNull(leftTickets)){
+            leftTickets.setSoldTickets(re3.getBody().getData().getSoldTickets());
+            System.out.println(re3.getBody().getData().toString());
+        }
+        return leftTickets;
     }
 
     private double getDirectProportion(HttpHeaders headers) {

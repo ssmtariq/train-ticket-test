@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author  Administrator
@@ -64,8 +65,8 @@ public class PaymentServiceImpl implements PaymentService{
 
     @Override
     public void initPayment(Payment payment, HttpHeaders headers){
-        Payment paymentTemp = paymentRepository.findById(payment.getId());
-        if(paymentTemp == null){
+        Optional<Payment> paymentTemp = paymentRepository.findById(payment.getId());
+        if(!paymentTemp.isPresent()){
             paymentRepository.save(payment);
         }else{
             PaymentServiceImpl.LOGGER.info("[Payment Service][Init Payment] Already Exists: {}", payment.getId());
