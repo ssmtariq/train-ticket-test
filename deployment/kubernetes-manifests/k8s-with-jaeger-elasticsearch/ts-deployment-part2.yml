@@ -1454,7 +1454,7 @@ spec:
       labels:
         app: ts-seat-service
     spec:
-      terminationGracePeriodSeconds: 120
+      terminationGracePeriodSeconds: 30
       containers:
         - name: ts-seat-service
           image: ssmtariq/ts-seat-service:v1
@@ -1462,8 +1462,8 @@ spec:
           securityContext:
             privileged: true
           volumeMounts:
-            - mountPath: /cache
-              name: cache-volume
+          - mountPath: /cache
+            name: cache-volume
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1483,16 +1483,17 @@ spec:
               value: "/sperf/build/preload/libpreload.so"
           # command: [ "/bin/bash", "-c", "--" ]
           # args: [ "while true; do sleep 30; done;" ]
-          args: [ "java", "-Xmx200m", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
+          # args: [ "java", "-Xmx200m", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
+          args: [ "java", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
           # args: [ "java", "-Xmx200m", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
           ports:
             - containerPort: 18898
           resources:
             requests:
-              cpu: 50m
-              memory: 160Mi
-              # limits:
-              # cpu: 200m
+              cpu: 200m
+              memory: 500Mi
+            # limits:
+            #   cpu: 200m
           #     memory: 500Mi
           readinessProbe:
             tcpSocket:

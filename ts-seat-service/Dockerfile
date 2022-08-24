@@ -61,7 +61,7 @@ RUN mkdir /cache
 WORKDIR /cache
 
 RUN sysctl -a | grep perf_event_paranoid
-CMD ["LD_PRELOAD=/sperf/build/preload/libpreload.so"]
+
 CMD ["sysctl", "-w", "kernel.perf_event_paranoid=1"]
 # CMD ["java", "-Xmx200m", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar"]
 # CMD ["java", "-Xmx200m", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar"]
