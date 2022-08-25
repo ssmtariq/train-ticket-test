@@ -38,6 +38,8 @@ public interface OrderOtherService {
 
     Response getSoldTickets(Seat seatRequest, HttpHeaders headers);
 
+    Response getDestStationListOfSoldTickets(Seat seatRequest, HttpHeaders headers);
+
     Response queryOrders(QueryInfo qi, String accountId, HttpHeaders headers);
 
     Response queryOrdersForRefresh(QueryInfo qi, String accountId, HttpHeaders headers);

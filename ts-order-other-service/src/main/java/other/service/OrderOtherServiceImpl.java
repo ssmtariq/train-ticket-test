@@ -58,6 +58,23 @@ public class OrderOtherServiceImpl implements OrderOtherService {
     }
 
     @Override
+    public Response getDestStationListOfSoldTickets(Seat seatRequest, HttpHeaders headers) {
+        ArrayList<Order> list = orderOtherRepository.findByTravelDateAndTrainNumber(seatRequest.getTravelDate(),
+                seatRequest.getTrainNumber());
+        if (list != null && !list.isEmpty()) {
+            List<String> destStations = new ArrayList<>();
+            for (Order tempOrder : list) {
+                destStations.add(tempOrder.getTo());
+            }
+            OrderOtherServiceImpl.LOGGER.info("DestStations are collected from a total of : {} tickets", destStations.size());
+
+            return new Response<>(1, success, destStations);
+        } else {
+            return new Response<>(0, "Seat is Null.", null);
+        }
+    }
+
+    @Override
     public Response findOrderById(UUID id, HttpHeaders headers) {
         Order order = orderOtherRepository.findById(id);
         if (order == null) {
