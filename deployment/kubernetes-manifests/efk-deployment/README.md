@@ -22,17 +22,17 @@ cat <<EOF | kubectl create -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-name: open-api
-namespace: ""
+  name: open-api
+  namespace: ""
 roleRef:
-apiGroup: rbac.authorization.k8s.io
-kind: ClusterRole
-name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
 subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: User
-  name: system:anonymous
-  EOF
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: system:anonymous
+EOF
 ```
 
 ### Access Kibana UI:
