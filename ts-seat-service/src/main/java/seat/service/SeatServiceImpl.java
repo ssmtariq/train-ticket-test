@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import seat.entity.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -234,15 +235,7 @@ public class SeatServiceImpl implements SeatService {
             SeatServiceImpl.LOGGER.info("[SeatService getLeftTicketOfInterval] The result of getRouteResult is {}", routeResult.toString());
 
             //Call the micro service to query for residual Ticket information: the set of the Ticket sold for the specified seat type
-            requestEntity = new HttpEntity(seatRequest, headers);
-            re3 = restTemplate.exchange(
-                    "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/tickets",
-                    HttpMethod.POST,
-                    requestEntity,
-                    new ParameterizedTypeReference<Response<LeftTicketInfo>>() {
-                    });
-            SeatServiceImpl.LOGGER.info("Get Order tickets result is : {}", re3);
-            leftTicketInfo = re3.getBody().getData();
+//            leftTicketInfo = invokeOrderOtherTickets(seatRequest, headers);
 
 
             //Calls the microservice to query the total number of seats specified for that vehicle
@@ -270,16 +263,12 @@ public class SeatServiceImpl implements SeatService {
         }
 
         int solidTicketSize = 0;
-        if (leftTicketInfo != null) {
-            String startStation = seatRequest.getStartStation();
-            Set<Ticket> soldTickets = leftTicketInfo.getSoldTickets();
-            solidTicketSize = soldTickets.size();
-            //To find out if tickets already sold are available
-            for (Ticket soldTicket : soldTickets) {
-                String soldTicketDestStation = soldTicket.getDestStation();
-                //Tickets can be allocated if the sold ticket's end station before the start station of the request
+        String startStation = seatRequest.getStartStation();
+        List<String> destStations = getDestStationListOfSoldTickets(seatRequest, headers);
+        if (Objects.nonNull(destStations)){
+            solidTicketSize = destStations.size();
+            for (String soldTicketDestStation : destStations) {
                 if (stationList.indexOf(soldTicketDestStation) < stationList.indexOf(startStation)) {
-                    SeatServiceImpl.LOGGER.info("[SeatService getLeftTicketOfInterval] The previous distributed seat number is usable! {}", soldTicket.getSeatNo());
                     numOfLeftTicket++;
                 }
             }
@@ -299,6 +288,23 @@ public class SeatServiceImpl implements SeatService {
         numOfLeftTicket += unusedNum;
 
         return new Response<>(1, "Get Left Ticket of Internal Success", numOfLeftTicket);
+    }
+
+    public List<String> getDestStationListOfSoldTickets(Seat seatRequest, HttpHeaders headers){
+        System.out.println("Seatservice.getDestStationListOfSoldTickets Starts...");
+        HttpEntity requestEntity = new HttpEntity(seatRequest, headers);
+        ResponseEntity<Response<List<String>>> responseEntity = restTemplate.exchange(
+                "http://ts-order-other-service:12032/api/v1/orderOtherService/orderOther/tickets/destStation/list",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<Response<List<String>>>() {
+                });
+        SeatServiceImpl.LOGGER.info("Get DestStation List from Order Other tickets result is : {}", responseEntity);
+        List<String> destStations  = responseEntity.getBody().getData();
+        if(destStations==null){
+            SeatServiceImpl.LOGGER.info("No DestStation found from Order Other tickets");
+        }
+        return destStations;
     }
 
     private double getDirectProportion(HttpHeaders headers) {
