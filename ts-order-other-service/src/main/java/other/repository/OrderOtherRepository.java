@@ -1,6 +1,5 @@
 package other.repository;
 
-import org.springframework.data.repository.query.Param;
 import other.entity.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -14,6 +13,7 @@ import java.util.UUID;
  */
 @Repository
 public interface OrderOtherRepository extends MongoRepository<Order, String> {
+
 
     /**
      * find order by id
@@ -51,9 +51,6 @@ public interface OrderOtherRepository extends MongoRepository<Order, String> {
     @Query("{ 'travelDate' : ?0 , trainNumber : ?1 }")
     ArrayList<Order> findByTravelDateAndTrainNumber(Date travelDate, String trainNumber);
 
-    @Query(value= "{travelDate : ?0 , trainNumber : ?1}", fields="{to:1}")
-    ArrayList<Order> findToByTravelDateAndTrainNumber(Date travelDate, String trainNumber);
-//    ArrayList<String> findToByTravelDateAndTrainNumber(Date travelDate, String trainNumber);
     /**
      * delete order by id
      *

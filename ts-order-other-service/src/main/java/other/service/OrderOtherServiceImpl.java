@@ -4,6 +4,10 @@ import edu.fudan.common.util.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,6 +18,11 @@ import other.repository.OrderOtherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
+
 import java.util.*;
 
 /**
@@ -21,6 +30,8 @@ import java.util.*;
  */
 @Service
 public class OrderOtherServiceImpl implements OrderOtherService {
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @Autowired
     private OrderOtherRepository orderOtherRepository;
@@ -59,19 +70,30 @@ public class OrderOtherServiceImpl implements OrderOtherService {
 
     @Override
     public Response getDestStationListOfSoldTickets(Seat seatRequest, HttpHeaders headers) {
-        System.out.println("getDestStationListOfSoldTickets is called!!!!!!!!!!!!!!!!!!!!!!");
-        ArrayList<Order> orders = orderOtherRepository.findToByTravelDateAndTrainNumber(seatRequest.getTravelDate(), seatRequest.getTrainNumber());
-        System.out.println("Order properties received: "+orders.get(0).toString());
-        if (!orders.isEmpty()) {
-            List<String> destStations = new ArrayList<>();
-            for (Order order : orders) {
-                destStations.add(order.getTo());
-            }
+        List<String> destStations = getDestStationList(seatRequest.getTravelDate(), seatRequest.getTrainNumber());
+        if (!destStations.isEmpty()) {
             OrderOtherServiceImpl.LOGGER.info("DestStations are collected from a total of : {} tickets", destStations.size());
             return new Response<>(1, success, destStations);
         } else {
             return new Response<>(0, "Seat is Null.", null);
         }
+    }
+
+    private List<String> getDestStationList(Date travelDate, String trainNumber) {
+        Aggregation agg = newAggregation(
+                match(Criteria.where("travelDate").is(travelDate).and("trainNumber").is(trainNumber)),
+                group().push("to").as("destStations"),
+                project().andExclude("_id")
+        );
+        //Convert the aggregation result into a List
+        AggregationResults<Map> groupResults = mongoTemplate.aggregate(agg, Order.class, Map.class);
+        List<Map> result = groupResults.getMappedResults();
+        if(!result.isEmpty()){
+            List<String> destStations = (List<String>) result.get(0).get("destStations");
+            System.out.println("Printing elements : "+Arrays.toString(destStations.toArray()));
+            return destStations;
+        }
+        return new ArrayList<>();
     }
 
     @Override
