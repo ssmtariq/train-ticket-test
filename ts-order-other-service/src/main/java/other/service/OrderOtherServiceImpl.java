@@ -94,7 +94,9 @@ public class OrderOtherServiceImpl implements OrderOtherService {
                 group().push("to").as("destStations"),
                 project().andExclude("_id")
         );
-        createMaterializedView(viewName);
+        if(!mongoTemplate.collectionExists(viewName)){
+            createMaterializedView(viewName);
+        }
 
         AggregationResults<Map> groupResults = mongoTemplate.aggregate(agg, viewName, Map.class);
         List<Map> result = groupResults.getMappedResults();
