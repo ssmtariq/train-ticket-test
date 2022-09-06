@@ -1,5 +1,7 @@
 package other.service;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.CommandResult;
 import edu.fudan.common.util.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,21 +81,121 @@ public class OrderOtherServiceImpl implements OrderOtherService {
         }
     }
 
+    /**
+     * Create a materialized view from Order and retrieve destStations using aggregation from that view
+     * @param travelDate
+     * @param trainNumber
+     * @return
+     */
     private List<String> getDestStationList(Date travelDate, String trainNumber) {
+        String viewName = "destStationList";
         Aggregation agg = newAggregation(
                 match(Criteria.where("travelDate").is(travelDate).and("trainNumber").is(trainNumber)),
                 group().push("to").as("destStations"),
                 project().andExclude("_id")
         );
-        //Convert the aggregation result into a List
-        AggregationResults<Map> groupResults = mongoTemplate.aggregate(agg, Order.class, Map.class);
+        if(!mongoTemplate.collectionExists(viewName)){
+            createMaterializedView(viewName);
+        }
+
+        AggregationResults<Map> groupResults = mongoTemplate.aggregate(agg, viewName, Map.class);
         List<Map> result = groupResults.getMappedResults();
+
         if(!result.isEmpty()){
             List<String> destStations = (List<String>) result.get(0).get("destStations");
-            System.out.println("Printing elements : "+Arrays.toString(destStations.toArray()));
             return destStations;
         }
         return new ArrayList<>();
+    }
+
+    /**
+     * Retrieve destStations using aggregation from Order
+     * @param travelDate
+     * @param trainNumber
+     * @return
+     */
+    private List<String> getDestStationListByAggregatingOrder(Date travelDate, String trainNumber) {
+        Aggregation agg = newAggregation(
+                match(Criteria.where("travelDate").is(travelDate).and("trainNumber").is(trainNumber)),
+                group().push("to").as("destStations"),
+                project().andExclude("_id")
+        );
+
+        AggregationResults<Map> groupResults = mongoTemplate.aggregate(agg, Order.class, Map.class);
+        List<Map> result = groupResults.getMappedResults();
+
+        if(!result.isEmpty()){
+            List<String> destStations = (List<String>) result.get(0).get("destStations");
+            return destStations;
+        }
+        return new ArrayList<>();
+    }
+
+    /**
+     * Create a standard view from Order and retrieve destStations using aggregation from that view
+     * @param travelDate
+     * @param trainNumber
+     * @return
+     */
+    private List<String> getDestStationListByCreatingStandardiewAndAggregateView(Date travelDate, String trainNumber) {
+        String viewName = "destStationList";
+        String fieldName = "destStations";
+
+        if(!mongoTemplate.collectionExists(viewName)){
+            createView(viewName);
+        }
+
+        Aggregation agg = newAggregation(
+                match(Criteria.where("travelDate").is(travelDate).and("trainNumber").is(trainNumber)),
+                group().push("to").as(fieldName),
+                project().andExclude("_id")
+        );
+
+        AggregationResults<Map> groupResults = mongoTemplate.aggregate(agg, viewName, Map.class);
+        List<Map> result = groupResults.getMappedResults();
+        if(!result.isEmpty()){
+            List<String> destStations = (List<String>) result.get(0).get(fieldName);
+            return destStations;
+        }
+        return new ArrayList<>();
+    }
+
+    private void createView(String viewName) {
+        String collectionName = "orders";
+        // Attempt to create the view
+        CommandResult result = mongoTemplate.executeCommand("{" +
+                "create: '" + viewName + "', " +
+                "viewOn: '" + collectionName + "', " +
+                "pipeline: [{$project: { travelDate: 1, trainNumber: 1, to: 1 }}]" +
+                "}");
+
+        if(result.ok()) {
+            LOGGER.info("Successfully created view '{}' on collection '{}'", viewName, collectionName);
+        }
+        else {
+            System.out.println("Failed to create view '" + viewName + "' on collection '" + collectionName + "' - " + result.getErrorMessage());
+        }
+    }
+
+    private void createMaterializedView(String viewName) {
+        String collectionName = "orders";
+        // Attempt to create the view
+        if(mongoTemplate.collectionExists(viewName)){
+            mongoTemplate.dropCollection(viewName);
+        }
+
+        CommandResult result = mongoTemplate.executeCommand("{" +
+                "aggregate: '" + collectionName + "', " +
+                "pipeline: [ { $project: { travelDate: 1, trainNumber: 1, to: 1 } },  { $merge: { into: '"+viewName+"', whenMatched: \"replace\", whenNotMatched: \"insert\" } } ]," +
+                "cursor: { }"+
+                "}");
+
+        if(result.ok()) {
+            LOGGER.info("Successfully created view '{}' on collection '{}'", viewName, collectionName);
+        }
+        else {
+            System.out.println("Failed to create view '" + viewName + "' on collection '" + collectionName + "' - " + result.getErrorMessage());
+        }
     }
 
     @Override
