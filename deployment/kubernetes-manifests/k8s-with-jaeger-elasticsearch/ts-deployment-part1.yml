@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ts-user-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
         - name: ts-auth-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -66,7 +66,7 @@ spec:
     spec:
       containers:
         - name: ts-route-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -93,7 +93,7 @@ spec:
     spec:
       containers:
         - name: ts-contacts-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -120,7 +120,7 @@ spec:
     spec:
       containers:
         - name: ts-order-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -147,7 +147,7 @@ spec:
     spec:
       containers:
         - name: ts-order-other-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -174,7 +174,7 @@ spec:
     spec:
       containers:
         - name: ts-config-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -201,7 +201,7 @@ spec:
     spec:
       containers:
         - name: ts-station-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -228,7 +228,7 @@ spec:
     spec:
       containers:
         - name: ts-train-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -255,7 +255,7 @@ spec:
     spec:
       containers:
         - name: ts-travel-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -282,7 +282,7 @@ spec:
     spec:
       containers:
         - name: ts-travel2-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -309,7 +309,7 @@ spec:
     spec:
       containers:
         - name: ts-price-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -336,7 +336,7 @@ spec:
     spec:
       containers:
         - name: ts-security-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -363,7 +363,7 @@ spec:
     spec:
       containers:
         - name: ts-inside-payment-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -390,7 +390,7 @@ spec:
     spec:
       containers:
         - name: ts-payment-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -417,7 +417,7 @@ spec:
     spec:
       containers:
         - name: ts-assurance-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -444,7 +444,7 @@ spec:
     spec:
       containers:
         - name: ts-ticket-office-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -503,7 +503,7 @@ spec:
     spec:
       containers:
         - name: ts-food-map-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -530,7 +530,7 @@ spec:
     spec:
       containers:
         - name: ts-consign-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -557,7 +557,7 @@ spec:
     spec:
       containers:
         - name: ts-consign-price-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
@@ -584,7 +584,7 @@ spec:
     spec:
       containers:
         - name: ts-food-mongo
-          image: mongo
+          image: mongo:5.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 27017
