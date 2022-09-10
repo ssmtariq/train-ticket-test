@@ -754,10 +754,17 @@ spec:
       labels:
         app: ts-food-service
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
         - name: ts-food-service
-          image: codewisdom/ts-food-service-with-jaeger:v1
-          imagePullPolicy: IfNotPresent
+#          image: codewisdom/ts-food-service-with-jaeger:v1
+          image: ssmtariq/ts-food-service:sperf
+          imagePullPolicy: Always
+          securityContext:
+            privileged: true
+          volumeMounts:
+          - mountPath: /cache
+            name: cache-volume
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -773,21 +780,27 @@ spec:
               value: "true"
             - name: SPAN_STORAGE_TYPE
               value: elasticsearch
+            - name: LD_PRELOAD
+              value: "/sperf/build/preload/libpreload.so"
+          args: [ "java", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-food-service-1.0.jar" ]
           ports:
             - containerPort: 18856
           resources:
             requests:
-              cpu: 50m
-              memory: 160Mi
-            limits:
               cpu: 200m
               memory: 500Mi
+#            limits:
+#              cpu: 200m
+#              memory: 500Mi
           readinessProbe:
             tcpSocket:
               port: 18856
-            initialDelaySeconds: 160
-            periodSeconds: 10
-            timeoutSeconds: 5
+#            initialDelaySeconds: 160
+#            periodSeconds: 10
+#            timeoutSeconds: 5
+      volumes:
+        - name: cache-volume
+          emptyDir: {}
 ---
 
 apiVersion: apps/v1
@@ -1454,16 +1467,10 @@ spec:
       labels:
         app: ts-seat-service
     spec:
-      terminationGracePeriodSeconds: 30
       containers:
         - name: ts-seat-service
-          image: ssmtariq/ts-seat-service:v1
-          imagePullPolicy: Always
-          securityContext:
-            privileged: true
-          volumeMounts:
-          - mountPath: /cache
-            name: cache-volume
+          image: codewisdom/ts-seat-service-with-jaeger:v1
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1474,36 +1481,26 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.152.59:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
               value: elasticsearch
-            - name: LD_PRELOAD
-              value: "/sperf/build/preload/libpreload.so"
-          # command: [ "/bin/bash", "-c", "--" ]
-          # args: [ "while true; do sleep 30; done;" ]
-          # args: [ "java", "-Xmx200m", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
-          args: [ "java", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
-          # args: [ "java", "-Xmx200m", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
           ports:
             - containerPort: 18898
           resources:
             requests:
+              cpu: 50m
+              memory: 160Mi
+            limits:
               cpu: 200m
               memory: 500Mi
-            # limits:
-            #   cpu: 200m
-          #     memory: 500Mi
           readinessProbe:
             tcpSocket:
               port: 18898
             initialDelaySeconds: 160
             periodSeconds: 10
             timeoutSeconds: 5
-      volumes:
-        - name: cache-volume
-          emptyDir: {}
 ---
 
 apiVersion: apps/v1
