@@ -5,12 +5,12 @@ spring:
   application:
     name: ts-food-service
   lifecycle:
-  timeout-per-shutdown-phase: "60s"
-    main:
-  allow-circular-references: true
-    mvc:
-  pathmatch:
-    matching-strategy: ant_path_matcher
+    timeout-per-shutdown-phase: "60s"
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   data:
     mongodb:
       host: ts-food-mongo
