@@ -1357,8 +1357,8 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: ts-route-plan-service
-          image: ssmtariq/ts-route-plan-service:original
-          imagePullPolicy: IfNotPresent
+          image: ssmtariq/ts-route-plan-service:sperf
+          imagePullPolicy: Always
           securityContext:
             privileged: true
           volumeMounts:
