@@ -356,7 +356,7 @@ spec:
     spec:
       containers:
         - name: ts-basic-service
-          image: codewisdom/ts-basic-service-with-jaeger:v1
+          image: ssmtariq/ts-basic-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -456,7 +456,7 @@ spec:
     spec:
       containers:
         - name: ts-config-service
-          image: codewisdom/ts-config-service-with-jaeger:v1
+          image: ssmtariq/ts-config-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -606,7 +606,7 @@ spec:
     spec:
       containers:
         - name: ts-contacts-service
-          image: codewisdom/ts-contacts-service-with-jaeger:v1
+          image: ssmtariq/ts-contacts-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -706,7 +706,7 @@ spec:
     spec:
       containers:
         - name: ts-food-map-service
-          image: codewisdom/ts-food-map-service-with-jaeger:v1
+          image: ssmtariq/ts-food-map-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -756,7 +756,7 @@ spec:
     spec:
       containers:
         - name: ts-food-service
-          image: codewisdom/ts-food-service-with-jaeger:v1
+          image: ssmtariq/ts-food-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -856,7 +856,7 @@ spec:
     spec:
       containers:
         - name: ts-auth-service
-          image: ssmtariq/ts-auth-service:v2
+          image: ssmtariq/ts-auth-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -956,7 +956,7 @@ spec:
     spec:
       containers:
         - name: ts-notification-service
-          image: codewisdom/ts-notification-service-with-jaeger:v1
+          image: ssmtariq/ts-notification-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1006,7 +1006,7 @@ spec:
     spec:
       containers:
         - name: ts-order-other-service
-          image: codewisdom/ts-order-other-service-with-jaeger:v1
+          image: ssmtariq/ts-order-other-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1056,7 +1056,7 @@ spec:
     spec:
       containers:
         - name: ts-order-service
-          image: codewisdom/ts-order-service-with-jaeger:v1
+          image: ssmtariq/ts-order-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1106,7 +1106,7 @@ spec:
     spec:
       containers:
         - name: ts-payment-service
-          image: codewisdom/ts-payment-service-with-jaeger:v1
+          image: ssmtariq/ts-payment-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1156,7 +1156,7 @@ spec:
     spec:
       containers:
         - name: ts-preserve-other-service
-          image: codewisdom/ts-preserve-other-service-with-jaeger:v1
+          image: ssmtariq/ts-preserve-other-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1206,7 +1206,7 @@ spec:
     spec:
       containers:
         - name: ts-preserve-service
-          image: codewisdom/ts-preserve-service-with-jaeger:v1
+          image: ssmtariq/ts-preserve-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1256,7 +1256,7 @@ spec:
     spec:
       containers:
         - name: ts-price-service
-          image: codewisdom/ts-price-service-with-jaeger:v1
+          image: ssmtariq/ts-price-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1356,7 +1356,7 @@ spec:
     spec:
       containers:
         - name: ts-route-plan-service
-          image: codewisdom/ts-route-plan-service-with-jaeger:v1
+          image: ssmtariq/ts-route-plan-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1406,7 +1406,7 @@ spec:
     spec:
       containers:
         - name: ts-route-service
-          image: codewisdom/ts-route-service-with-jaeger:v1
+          image: ssmtariq/ts-route-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1522,7 +1522,7 @@ spec:
     spec:
       containers:
         - name: ts-security-service
-          image: codewisdom/ts-security-service-with-jaeger:v1
+          image: ssmtariq/ts-security-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1572,7 +1572,7 @@ spec:
     spec:
       containers:
         - name: ts-user-service
-          image: codewisdom/ts-user-service-with-jaeger:v1
+          image: ssmtariq/ts-user-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1622,7 +1622,7 @@ spec:
     spec:
       containers:
         - name: ts-station-service
-          image: codewisdom/ts-station-service-with-jaeger:v1
+          image: ssmtariq/ts-station-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1722,7 +1722,7 @@ spec:
     spec:
       containers:
         - name: ts-ticketinfo-service
-          image: codewisdom/ts-ticketinfo-service-with-jaeger:v1
+          image: ssmtariq/ts-ticketinfo-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1772,7 +1772,7 @@ spec:
     spec:
       containers:
         - name: ts-train-service
-          image: ssmtariq/ts-train-service:lightstep
+          image: ssmtariq/ts-train-service:master
           imagePullPolicy: Always
           env:
             - name: OPENTRACING_ENABLED
@@ -1822,11 +1822,11 @@ spec:
     spec:
       containers:
         - name: ts-travel2-service
-          image: ssmtariq/ts-travel2-service:master
+          image: ssmtariq/ts-travel2-service:master3
           imagePullPolicy: Always
           env:
             - name: EXT_REQUESTS
-              value: "1000"
+              value: "1"
             - name: OPENTRACING_ENABLED
               value: "true"
             - name: JAEGER_SAMPLER_TYPE
@@ -1874,7 +1874,7 @@ spec:
     spec:
       containers:
         - name: ts-travel-plan-service
-          image: codewisdom/ts-travel-plan-service-with-jaeger:v1
+          image: ssmtariq/ts-travel-plan-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1924,7 +1924,7 @@ spec:
     spec:
       containers:
         - name: ts-travel-service
-          image: codewisdom/ts-travel-service-with-jaeger:v1
+          image: ssmtariq/ts-travel-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1974,7 +1974,7 @@ spec:
     spec:
       containers:
         - name: ts-verification-code-service
-          image: codewisdom/ts-verification-code-service-with-jaeger:v1
+          image: ssmtariq/ts-verification-code-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
