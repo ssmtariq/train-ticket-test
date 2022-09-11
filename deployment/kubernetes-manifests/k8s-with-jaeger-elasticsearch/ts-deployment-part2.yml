@@ -381,7 +381,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 15680
@@ -981,7 +981,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 1024Mi
           readinessProbe:
             tcpSocket:
               port: 17853
@@ -1031,7 +1031,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 12032
@@ -1081,7 +1081,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 12031
@@ -1431,7 +1431,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 11178
@@ -1481,7 +1481,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 18898
@@ -1531,7 +1531,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 11188
@@ -1631,7 +1631,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 12345
@@ -1731,7 +1731,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 15681
@@ -1933,7 +1933,7 @@ spec:
               memory: 160Mi
             limits:
               cpu: 200m
-              memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 12346
