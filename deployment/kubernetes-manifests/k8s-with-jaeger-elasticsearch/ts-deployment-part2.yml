@@ -67,7 +67,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -118,7 +118,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -168,7 +168,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -218,7 +218,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -268,7 +268,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -318,7 +318,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -356,7 +356,7 @@ spec:
     spec:
       containers:
         - name: ts-basic-service
-          image: ssmtariq/ts-basic-service:latest
+          image: ssmtariq/ts-basic-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -368,7 +368,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -418,7 +418,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -456,7 +456,7 @@ spec:
     spec:
       containers:
         - name: ts-config-service
-          image: codewisdom/ts-config-service-with-jaeger:v1
+          image: ssmtariq/ts-config-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -468,7 +468,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -518,7 +518,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -568,7 +568,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -606,7 +606,7 @@ spec:
     spec:
       containers:
         - name: ts-contacts-service
-          image: codewisdom/ts-contacts-service-with-jaeger:v1
+          image: ssmtariq/ts-contacts-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -618,7 +618,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -668,7 +668,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -706,7 +706,7 @@ spec:
     spec:
       containers:
         - name: ts-food-map-service
-          image: codewisdom/ts-food-map-service-with-jaeger:v1
+          image: ssmtariq/ts-food-map-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -718,7 +718,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -756,7 +756,7 @@ spec:
     spec:
       containers:
         - name: ts-food-service
-          image: codewisdom/ts-food-service-with-jaeger:v1
+          image: ssmtariq/ts-food-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -768,7 +768,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -818,7 +818,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -856,7 +856,7 @@ spec:
     spec:
       containers:
         - name: ts-auth-service
-          image: ssmtariq/ts-auth-service:latest
+          image: ssmtariq/ts-auth-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -868,7 +868,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -918,7 +918,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -956,7 +956,7 @@ spec:
     spec:
       containers:
         - name: ts-notification-service
-          image: codewisdom/ts-notification-service-with-jaeger:v1
+          image: ssmtariq/ts-notification-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -968,7 +968,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1006,7 +1006,7 @@ spec:
     spec:
       containers:
         - name: ts-order-other-service
-          image: codewisdom/ts-order-other-service-with-jaeger:v1
+          image: ssmtariq/ts-order-other-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1018,7 +1018,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1056,7 +1056,7 @@ spec:
     spec:
       containers:
         - name: ts-order-service
-          image: codewisdom/ts-order-service-with-jaeger:v1
+          image: ssmtariq/ts-order-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1068,7 +1068,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1106,7 +1106,7 @@ spec:
     spec:
       containers:
         - name: ts-payment-service
-          image: codewisdom/ts-payment-service-with-jaeger:v1
+          image: ssmtariq/ts-payment-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1118,7 +1118,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1156,7 +1156,7 @@ spec:
     spec:
       containers:
         - name: ts-preserve-other-service
-          image: codewisdom/ts-preserve-other-service-with-jaeger:v1
+          image: ssmtariq/ts-preserve-other-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1168,7 +1168,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1206,7 +1206,7 @@ spec:
     spec:
       containers:
         - name: ts-preserve-service
-          image: codewisdom/ts-preserve-service-with-jaeger:v1
+          image: ssmtariq/ts-preserve-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1218,7 +1218,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1256,7 +1256,7 @@ spec:
     spec:
       containers:
         - name: ts-price-service
-          image: codewisdom/ts-price-service-with-jaeger:v1
+          image: ssmtariq/ts-price-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1268,7 +1268,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1318,7 +1318,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1356,7 +1356,7 @@ spec:
     spec:
       containers:
         - name: ts-route-plan-service
-          image: codewisdom/ts-route-plan-service-with-jaeger:v1
+          image: ssmtariq/ts-route-plan-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1368,7 +1368,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1406,7 +1406,7 @@ spec:
     spec:
       containers:
         - name: ts-route-service
-          image: codewisdom/ts-route-service-with-jaeger:v1
+          image: ssmtariq/ts-route-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1418,7 +1418,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1456,7 +1456,7 @@ spec:
     spec:
       containers:
         - name: ts-seat-service
-          image: codewisdom/ts-seat-service-with-jaeger:v1
+          image: ssmtariq/ts-seat-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1468,7 +1468,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1506,7 +1506,7 @@ spec:
     spec:
       containers:
         - name: ts-security-service
-          image: ssmtariq/ts-security-service:latest
+          image: ssmtariq/ts-security-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1518,7 +1518,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1556,7 +1556,7 @@ spec:
     spec:
       containers:
         - name: ts-user-service
-          image: ssmtariq/ts-user-service:latest
+          image: ssmtariq/ts-user-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1568,7 +1568,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1606,7 +1606,7 @@ spec:
     spec:
       containers:
         - name: ts-station-service
-          image: codewisdom/ts-station-service-with-jaeger:v1
+          image: ssmtariq/ts-station-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1618,7 +1618,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1668,7 +1668,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1706,7 +1706,7 @@ spec:
     spec:
       containers:
         - name: ts-ticketinfo-service
-          image: codewisdom/ts-ticketinfo-service-with-jaeger:v1
+          image: ssmtariq/ts-ticketinfo-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1718,7 +1718,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1768,7 +1768,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1820,7 +1820,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1858,7 +1858,7 @@ spec:
     spec:
       containers:
         - name: ts-travel-plan-service
-          image: codewisdom/ts-travel-plan-service-with-jaeger:v1
+          image: ssmtariq/ts-travel-plan-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1870,7 +1870,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1908,7 +1908,7 @@ spec:
     spec:
       containers:
         - name: ts-travel-service
-          image: codewisdom/ts-travel-service-with-jaeger:v1
+          image: ssmtariq/ts-travel-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1920,7 +1920,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1958,7 +1958,7 @@ spec:
     spec:
       containers:
         - name: ts-verification-code-service
-          image: codewisdom/ts-verification-code-service-with-jaeger:v1
+          image: ssmtariq/ts-verification-code-service:original
           imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
@@ -1970,7 +1970,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -2020,7 +2020,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.152.59:9200
+              value: http://192.168.226.76:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
