@@ -27,6 +27,7 @@ public class RoutePlanServiceImpl implements RoutePlanService {
     private static final Logger LOGGER = LoggerFactory.getLogger(RoutePlanServiceImpl.class);
 
     @Override
+    @SperfAnno(monitorObject="searchCheapestResult")
     public Response searchCheapestResult(RoutePlanInfo info, HttpHeaders headers) {
 
         //1.Violence pulls out all the results of travel-service and travle2-service

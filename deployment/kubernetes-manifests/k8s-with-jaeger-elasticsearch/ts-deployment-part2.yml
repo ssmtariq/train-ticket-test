@@ -67,7 +67,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -118,7 +118,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -168,7 +168,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -218,7 +218,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -268,7 +268,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -318,7 +318,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -368,7 +368,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -418,7 +418,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -468,7 +468,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -518,7 +518,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -568,7 +568,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -618,7 +618,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -668,7 +668,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -718,7 +718,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -768,7 +768,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -818,7 +818,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -868,7 +868,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -918,7 +918,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -968,7 +968,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1018,7 +1018,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1068,7 +1068,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1118,7 +1118,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1168,7 +1168,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1218,7 +1218,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1268,7 +1268,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1318,7 +1318,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1354,10 +1354,16 @@ spec:
       labels:
         app: ts-route-plan-service
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
         - name: ts-route-plan-service
           image: ssmtariq/ts-route-plan-service:original
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          volumeMounts:
+          - mountPath: /cache
+            name: cache-volume
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1368,26 +1374,32 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
               value: elasticsearch
+            - name: LD_PRELOAD
+              value: "/sperf/build/preload/libpreload.so"
+          args: [ "java", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-route-plan-service-1.0.jar" ]
           ports:
             - containerPort: 14578
           resources:
             requests:
-              cpu: 50m
-              memory: 160Mi
-            limits:
               cpu: 200m
               memory: 500Mi
+            # limits:
+            #   cpu: 200m
+            #   memory: 500Mi
           readinessProbe:
             tcpSocket:
               port: 14578
             initialDelaySeconds: 160
             periodSeconds: 10
             timeoutSeconds: 5
+      volumes:
+        - name: cache-volume
+          emptyDir: {}
 ---
 
 apiVersion: apps/v1
@@ -1418,7 +1430,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1454,16 +1466,10 @@ spec:
       labels:
         app: ts-seat-service
     spec:
-      terminationGracePeriodSeconds: 30
       containers:
         - name: ts-seat-service
-          image: ssmtariq/ts-seat-service:v1
-          imagePullPolicy: Always
-          securityContext:
-            privileged: true
-          volumeMounts:
-          - mountPath: /cache
-            name: cache-volume
+          image: ssmtariq/ts-seat-service:original
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1474,36 +1480,26 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
               value: elasticsearch
-            - name: LD_PRELOAD
-              value: "/sperf/build/preload/libpreload.so"
-          # command: [ "/bin/bash", "-c", "--" ]
-          # args: [ "while true; do sleep 30; done;" ]
-          # args: [ "java", "-Xmx200m", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
-          args: [ "java", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
-          # args: [ "java", "-Xmx200m", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-seat-service-1.0.jar" ]
           ports:
             - containerPort: 18898
           resources:
             requests:
+              cpu: 50m
+              memory: 160Mi
+            limits:
               cpu: 200m
-              memory: 500Mi
-            # limits:
-            #   cpu: 200m
-          #     memory: 500Mi
+              memory: 2048Mi
           readinessProbe:
             tcpSocket:
               port: 18898
             initialDelaySeconds: 160
             periodSeconds: 10
             timeoutSeconds: 5
-      volumes:
-        - name: cache-volume
-          emptyDir: {}
 ---
 
 apiVersion: apps/v1
@@ -1534,7 +1530,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1584,7 +1580,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1634,7 +1630,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1684,7 +1680,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1734,7 +1730,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1784,7 +1780,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1836,7 +1832,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1886,7 +1882,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1936,7 +1932,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -1986,7 +1982,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
@@ -2036,7 +2032,7 @@ spec:
             - name: LATENCY_SAMPLER_PARAM
               value: "1"
             - name: ES_SERVER_URLS
-              value: http://192.168.157.77:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
