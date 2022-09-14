@@ -266,10 +266,10 @@ public class Travel2ServiceImpl implements Travel2Service {
         int indexEnd = route.getStations().indexOf(endPlaceId);
         int distanceStart = route.getDistances().get(indexStart) - route.getDistances().get(0);
         int distanceEnd = route.getDistances().get(indexEnd) - route.getDistances().get(0);
-        Integer averageSpeed = getAverageSpeed(trip.getTrainTypeId(), headers);
+        TrainType trainType = getTrainType(trip.getTrainTypeId(), headers);
         //Train running time is calculated according to the average running speed of the train
-        int minutesStart = 60 * distanceStart / averageSpeed;
-        int minutesEnd = 60 * distanceEnd / averageSpeed;
+        int minutesStart = 60 * distanceStart / trainType.getAverageSpeed();
+        int minutesEnd = 60 * distanceEnd / trainType.getAverageSpeed();
 
         Calendar calendarStart = Calendar.getInstance();
         calendarStart.setTime(trip.getStartingTime());
@@ -331,19 +331,6 @@ public class Travel2ServiceImpl implements Travel2Service {
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Response<TrainType>>() {
-                });
-
-        return re.getBody().getData();
-    }
-
-    private Integer getAverageSpeed(String trainTypeId, HttpHeaders headers) {
-
-        HttpEntity requestEntity = new HttpEntity(null);
-        ResponseEntity<Response<Integer>> re = restTemplate.exchange(
-                "http://ts-train-service:14567/api/v1/trainservice/trains/" + trainTypeId + "/getAverageSpeed",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<Response<Integer>>() {
                 });
 
         return re.getBody().getData();
@@ -426,4 +413,3 @@ public class Travel2ServiceImpl implements Travel2Service {
     }
 
 }
-
