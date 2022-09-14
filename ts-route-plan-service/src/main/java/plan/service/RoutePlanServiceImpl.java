@@ -1,8 +1,6 @@
 package plan.service;
 
 import edu.fudan.common.util.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -24,7 +22,6 @@ public class RoutePlanServiceImpl implements RoutePlanService {
 
     @Autowired
     private RestTemplate restTemplate;
-    private static final Logger LOGGER = LoggerFactory.getLogger(RoutePlanServiceImpl.class);
 
     @Override
     public Response searchCheapestResult(RoutePlanInfo info, HttpHeaders headers) {
@@ -150,7 +147,6 @@ public class RoutePlanServiceImpl implements RoutePlanService {
     public Response searchMinStopStations(RoutePlanInfo info, HttpHeaders headers) {
         String fromStationId = queryForStationId(info.getFormStationName(), headers);
         String toStationId = queryForStationId(info.getToStationName(), headers);
-        RoutePlanServiceImpl.LOGGER.info("From Id: {} To: {}", fromStationId , toStationId);
         //1.Get the route through the two stations
 
         HttpEntity requestEntity = new HttpEntity(headers);
@@ -163,7 +159,6 @@ public class RoutePlanServiceImpl implements RoutePlanService {
 
 
         ArrayList<Route> routeList = re.getBody().getData();
-        RoutePlanServiceImpl.LOGGER.info("[Route Plan Service] Candidate Route Number: {}", routeList.size());
         //2.Calculate how many stops there are between the two stations
         ArrayList<Integer> gapList = new ArrayList<>();
         for (int i = 0; i < routeList.size(); i++) {
@@ -214,7 +209,6 @@ public class RoutePlanServiceImpl implements RoutePlanService {
             tempList.addAll(travelTrips.get(i));
             finalTripResult.add(tempList);
         }
-        RoutePlanServiceImpl.LOGGER.info("[Route Plan Service] Trips Num: {}", finalTripResult.size());
         //5.Then, get the price and the station information according to the train information
         ArrayList<Trip> trips = new ArrayList<>();
         for (ArrayList<Trip> tempTrips : finalTripResult) {
@@ -266,12 +260,10 @@ public class RoutePlanServiceImpl implements RoutePlanService {
 
             tripResponses.add(unit);
         }
-        RoutePlanServiceImpl.LOGGER.info("[Route Plan Service] Trips Response Unit Num: {}", tripResponses.size());
         return new Response<>(1, "Success.", tripResponses);
     }
 
     private String queryForStationId(String stationName, HttpHeaders headers) {
-        RoutePlanServiceImpl.LOGGER.info("[Preserve Service][Get Station Name]");
 
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response<String>> re = restTemplate.exchange(
@@ -284,7 +276,6 @@ public class RoutePlanServiceImpl implements RoutePlanService {
     }
 
     private Route getRouteByRouteId(String routeId, HttpHeaders headers) {
-        RoutePlanServiceImpl.LOGGER.info("[Route Plan Service][Get Route By Id] Route ID：{}", routeId);
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response<Route>> re = restTemplate.exchange(
                 "http://ts-route-service:11178/api/v1/routeservice/routes/" + routeId,
@@ -295,10 +286,8 @@ public class RoutePlanServiceImpl implements RoutePlanService {
         Response<Route> result = re.getBody();
 
         if (result.getStatus() == 0) {
-            RoutePlanServiceImpl.LOGGER.info("[Travel Service][Get Route By Id] Fail. {}", result.getMsg());
             return null;
         } else {
-            RoutePlanServiceImpl.LOGGER.info("[Travel Service][Get Route By Id] Success.");
             return result.getData();
         }
     }
@@ -314,7 +303,6 @@ public class RoutePlanServiceImpl implements RoutePlanService {
                 });
 
         ArrayList<TripResponse> tripResponses = re.getBody().getData();
-        RoutePlanServiceImpl.LOGGER.info("[Route Plan Get Trip][Size] {}", tripResponses.size());
         return tripResponses;
     }
 
@@ -328,7 +316,6 @@ public class RoutePlanServiceImpl implements RoutePlanService {
                 new ParameterizedTypeReference<Response<ArrayList<TripResponse>>>() {
                 });
         ArrayList<TripResponse> list = re.getBody().getData();
-        RoutePlanServiceImpl.LOGGER.info("[Route Plan Get TripOther][Size] {}", list.size());
         return list;
     }
 

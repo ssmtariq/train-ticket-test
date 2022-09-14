@@ -1,8 +1,6 @@
 package route.service;
 
 import edu.fudan.common.util.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -22,20 +20,17 @@ public class RouteServiceImpl implements RouteService {
 
     @Autowired
     private RouteRepository routeRepository;
-    private static final Logger LOGGER = LoggerFactory.getLogger(RouteServiceImpl.class);
 
     String success = "Success";
 
     @Override
     public Response createAndModify(RouteInfo info, HttpHeaders headers) {
-        RouteServiceImpl.LOGGER.info("Create And Modify Start: {} End: {}", info.getStartStation(), info.getEndStation());
 
         String[] stations = info.getStationList().split(",");
         String[] distances = info.getDistanceList().split(",");
         List<String> stationList = new ArrayList<>();
         List<Integer> distanceList = new ArrayList<>();
         if (stations.length != distances.length) {
-            RouteServiceImpl.LOGGER.info("Station Number Not Equal To Distance Number");
 
             return new Response<>(0, "Station Number Not Equal To Distance Number", null);
         }
@@ -52,7 +47,6 @@ public class RouteServiceImpl implements RouteService {
             route.setStations(stationList);
             route.setDistances(distanceList);
             routeRepository.save(route);
-            RouteServiceImpl.LOGGER.info("Save success");
 
             return new Response<>(1, "Save Success", route);
         } else {
@@ -67,7 +61,6 @@ public class RouteServiceImpl implements RouteService {
             route.setStations(stationList);
             route.setDistances(distanceList);
             routeRepository.save(route);
-            RouteServiceImpl.LOGGER.info("Modify success");
             return new Response<>(1, "Modify success", route);
         }
     }
@@ -97,7 +90,6 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public Response getRouteByStartAndTerminal(String startId, String terminalId, HttpHeaders headers) {
         ArrayList<Route> routes = routeRepository.findAll();
-        RouteServiceImpl.LOGGER.info("[Route Service] Find All: {}", routes.size());
         List<Route> resultList = new ArrayList<>();
         for (Route route : routes) {
             if (route.getStations().contains(startId) &&

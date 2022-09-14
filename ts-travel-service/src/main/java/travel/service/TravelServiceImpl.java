@@ -2,8 +2,6 @@ package travel.service;
 
 import edu.fudan.common.util.JsonUtils;
 import edu.fudan.common.util.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -28,8 +26,6 @@ public class TravelServiceImpl implements TravelService {
 
     @Autowired
     private RestTemplate restTemplate;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TravelServiceImpl.class);
 
     String success = "Success";
     String noContent = "No Content";
@@ -169,7 +165,6 @@ public class TravelServiceImpl implements TravelService {
     @Override
     public Response getTripAllDetailInfo(TripAllDetailInfo gtdi, HttpHeaders headers) {
         TripAllDetail gtdr = new TripAllDetail();
-        TravelServiceImpl.LOGGER.info("[TravelService] [TripAllDetailInfo] TripId: {}", gtdi.getTripId());
         Trip trip = repository.findByTripId(new TripId(gtdi.getTripId()));
         if (trip == null) {
             gtdr.setTripResponse(null);
@@ -212,7 +207,6 @@ public class TravelServiceImpl implements TravelService {
                 HttpMethod.POST,
                 requestEntity,
                 Response.class);
-        TravelServiceImpl.LOGGER.info("Ts-basic-service ticket info is: {}", re.getBody().toString());
         TravelResult resultForTravel = JsonUtils.conveterObject(re.getBody().getData(), TravelResult.class);
 
         //Ticket order _ high-speed train (number of tickets purchased)
@@ -225,8 +219,6 @@ public class TravelServiceImpl implements TravelService {
                 });
 
         Response<SoldTicket> result = re2.getBody();
-        TravelServiceImpl.LOGGER.info("Order info is: {}", result.toString());
-
 
         //Set the returned ticket information
         TripResponse response = new TripResponse();
@@ -258,13 +250,11 @@ public class TravelServiceImpl implements TravelService {
         calendarStart.setTime(trip.getStartingTime());
         calendarStart.add(Calendar.MINUTE, minutesStart);
         response.setStartingTime(calendarStart.getTime());
-        TravelServiceImpl.LOGGER.info("[Train Service] calculate time：{}  time: {}", minutesStart, calendarStart.getTime());
 
         Calendar calendarEnd = Calendar.getInstance();
         calendarEnd.setTime(trip.getStartingTime());
         calendarEnd.add(Calendar.MINUTE, minutesEnd);
         response.setEndTime(calendarEnd.getTime());
-        TravelServiceImpl.LOGGER.info("[Train Service] calculate time：{}  time: {}", minutesEnd, calendarEnd.getTime());
 
         response.setTripId(new TripId(result.getData().getTrainNumber()));
         response.setTrainTypeId(trip.getTrainTypeId());
@@ -326,13 +316,11 @@ public class TravelServiceImpl implements TravelService {
                 requestEntity,
                 new ParameterizedTypeReference<Response<String>>() {
                 });
-        TravelServiceImpl.LOGGER.info("Query for Station id is: {}", re.getBody().toString());
 
         return re.getBody().getData();
     }
 
     private Route getRouteByRouteId(String routeId, HttpHeaders headers) {
-        TravelServiceImpl.LOGGER.info("[Travel Service][Get Route By Id] Route ID：{}", routeId);
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<Response> re = restTemplate.exchange(
                 "http://ts-route-service:11178/api/v1/routeservice/routes/" + routeId,
@@ -342,10 +330,8 @@ public class TravelServiceImpl implements TravelService {
         Response routeRes = re.getBody();
 
         Route route1 = new Route();
-        TravelServiceImpl.LOGGER.info("Routes Response is : {}", routeRes.toString());
         if (routeRes.getStatus() == 1) {
             route1 = JsonUtils.conveterObject(routeRes.getData(), Route.class);
-            TravelServiceImpl.LOGGER.info("Route is: {}", route1.toString());
         }
         return route1;
     }
@@ -362,8 +348,6 @@ public class TravelServiceImpl implements TravelService {
         seatRequest.setTravelDate(travelDate);
         seatRequest.setSeatType(seatType);
 
-        TravelServiceImpl.LOGGER.info("Seat request To String: {}", seatRequest.toString());
-
         HttpEntity requestEntity = new HttpEntity(seatRequest, headers);
         ResponseEntity<Response<Integer>> re = restTemplate.exchange(
                 "http://ts-seat-service:18898/api/v1/seatservice/seats/left_tickets",
@@ -371,7 +355,6 @@ public class TravelServiceImpl implements TravelService {
                 requestEntity,
                 new ParameterizedTypeReference<Response<Integer>>() {
                 });
-        TravelServiceImpl.LOGGER.info("Get Rest tickets num is: {}", re.getBody().toString());
 
         return re.getBody().getData();
     }

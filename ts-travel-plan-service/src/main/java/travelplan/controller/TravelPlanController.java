@@ -1,7 +1,5 @@
 package travelplan.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +20,6 @@ public class TravelPlanController {
     @Autowired
     TravelPlanService travelPlanService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TravelPlanController.class);
 
     @GetMapping(path = "/welcome" )
     public String home() {
@@ -31,25 +28,21 @@ public class TravelPlanController {
 
     @PostMapping(value="/travelPlan/transferResult" )
     public HttpEntity getTransferResult(@RequestBody TransferTravelInfo info, @RequestHeader HttpHeaders headers) {
-        TravelPlanController.LOGGER.info("[Search Transit]");
         return ok(travelPlanService.getTransferSearch(info, headers));
     }
 
     @PostMapping(value="/travelPlan/cheapest")
     public HttpEntity getByCheapest(@RequestBody TripInfo queryInfo, @RequestHeader HttpHeaders headers) {
-        TravelPlanController.LOGGER.info("[Search Cheapest]");
         return ok(travelPlanService.getCheapest(queryInfo, headers));
     }
 
     @PostMapping(value="/travelPlan/quickest")
     public HttpEntity getByQuickest(@RequestBody TripInfo queryInfo, @RequestHeader HttpHeaders headers) {
-        TravelPlanController.LOGGER.info("[Search Quickest]");
         return ok(travelPlanService.getQuickest(queryInfo, headers));
     }
 
     @PostMapping(value="/travelPlan/minStation")
     public HttpEntity getByMinStation(@RequestBody TripInfo queryInfo, @RequestHeader HttpHeaders headers) {
-        TravelPlanController.LOGGER.info("[Search Min Station]");
         return ok(travelPlanService.getMinStation(queryInfo, headers));
     }
 

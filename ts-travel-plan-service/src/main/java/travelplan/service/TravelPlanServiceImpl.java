@@ -1,8 +1,6 @@
 package travelplan.service;
 
 import edu.fudan.common.util.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -25,8 +23,6 @@ public class TravelPlanServiceImpl implements TravelPlanService {
 
     @Autowired
     private RestTemplate restTemplate;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TravelPlanServiceImpl.class);
 
     String success = "Success";
     String cannotFind = "Cannot Find";
@@ -208,7 +204,6 @@ public class TravelPlanServiceImpl implements TravelPlanService {
         seatRequest.setTravelDate(travelDate);
         seatRequest.setSeatType(seatType);
 
-        TravelPlanServiceImpl.LOGGER.info("Seat Request is: {}", seatRequest.toString());
         HttpEntity requestEntity = new HttpEntity(seatRequest, headers);
         ResponseEntity<Response<Integer>> re = restTemplate.exchange(
                 "http://ts-seat-service:18898/api/v1/seatservice/seats/left_tickets",
