@@ -1756,7 +1756,7 @@ spec:
     spec:
       containers:
         - name: ts-train-service
-          image: ssmtariq/ts-train-service:master
+          image: ssmtariq/ts-train-service:original
           imagePullPolicy: Always
           env:
             - name: OPENTRACING_ENABLED
@@ -1806,7 +1806,7 @@ spec:
     spec:
       containers:
         - name: ts-travel2-service
-          image: ssmtariq/ts-travel2-service:master3
+          image: ssmtariq/ts-travel2-service:original
           imagePullPolicy: Always
           env:
             - name: EXT_REQUESTS
