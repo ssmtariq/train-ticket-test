@@ -1,7 +1,5 @@
 package travel2.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +23,6 @@ public class Travel2Controller {
     @Autowired
     private Travel2Service service;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Travel2Controller.class);
 
     @GetMapping(path = "/welcome")
     public String home(@RequestHeader HttpHeaders headers) {
@@ -42,7 +39,6 @@ public class Travel2Controller {
     @GetMapping(value = "/routes/{tripId}")
     public HttpEntity getRouteByTripId(@PathVariable String tripId,
                                        @RequestHeader HttpHeaders headers) {
-        Travel2Controller.LOGGER.info("[Get Route By Trip ID] TripId: {}", tripId);
         //Route
         return ok(service.getRouteByTripId(tripId, headers));
     }
@@ -102,11 +98,9 @@ public class Travel2Controller {
         if (info.getStartingPlace() == null || info.getStartingPlace().length() == 0 ||
                 info.getEndPlace() == null || info.getEndPlace().length() == 0 ||
                 info.getDepartureTime() == null) {
-            Travel2Controller.LOGGER.info("[Travel Service][Travel Query] Fail.Something null.");
             ArrayList<TripResponse> errorList = new ArrayList<>();
             return ok(errorList);
         }
-        Travel2Controller.LOGGER.info("[Travel Service] Query TripResponse");
         return ok(service.query(info, headers));
     }
 
