@@ -757,7 +757,7 @@ spec:
       containers:
         - name: ts-food-service
           image: ssmtariq/ts-food-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1007,7 +1007,7 @@ spec:
       containers:
         - name: ts-order-other-service
           image: ssmtariq/ts-order-other-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1057,7 +1057,7 @@ spec:
       containers:
         - name: ts-order-service
           image: ssmtariq/ts-order-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1357,7 +1357,7 @@ spec:
       containers:
         - name: ts-route-plan-service
           image: ssmtariq/ts-route-plan-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1407,7 +1407,7 @@ spec:
       containers:
         - name: ts-route-service
           image: ssmtariq/ts-route-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1457,7 +1457,7 @@ spec:
       containers:
         - name: ts-seat-service
           image: ssmtariq/ts-seat-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1707,7 +1707,7 @@ spec:
       containers:
         - name: ts-ticketinfo-service
           image: ssmtariq/ts-ticketinfo-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1757,7 +1757,7 @@ spec:
       containers:
         - name: ts-train-service
           image: ssmtariq/ts-train-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1807,7 +1807,7 @@ spec:
       containers:
         - name: ts-travel2-service
           image: ssmtariq/ts-travel2-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: EXT_REQUESTS
               value: "1"
@@ -1859,7 +1859,7 @@ spec:
       containers:
         - name: ts-travel-plan-service
           image: ssmtariq/ts-travel-plan-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1909,7 +1909,7 @@ spec:
       containers:
         - name: ts-travel-service
           image: ssmtariq/ts-travel-service:original
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
