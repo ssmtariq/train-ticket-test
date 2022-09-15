@@ -887,7 +887,7 @@ spec:
             - name: COLLECTOR_ZIPKIN_HTTP_PORT
               value: "9411"
             - name: ES_SERVER_URLS
-              value: http://192.168.226.76:9200
+              value: http://192.168.226.66:9200
             - name: ES_TAGS_AS_FIELDS_ALL
               value: "true"
             - name: SPAN_STORAGE_TYPE
