@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.Objects;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Service
@@ -113,7 +115,6 @@ public class FoodServiceImpl implements FoodService {
         }
 
         // need return this tow element
-        List<TrainFood> trainFoodList = null;
         Map<String, List<FoodStore>> foodStoreListMap = new HashMap<>();
 
         /**--------------------------------------------------------------------------------------*/
@@ -125,60 +126,45 @@ public class FoodServiceImpl implements FoodService {
                 new ParameterizedTypeReference<Response<List<TrainFood>>>() {
                 });
 
-        List<TrainFood> trainFoodListResult = reGetTrainFoodListResult.getBody().getData();
+        List<TrainFood> trainFoodList = reGetTrainFoodListResult.getBody().getData();
 
-        if (trainFoodListResult != null) {
-            trainFoodList = trainFoodListResult;
-        } else {
+        if (Objects.isNull(trainFoodList)) {
             return new Response<>(0, "Get the Get Food Request Failed!", null);
         }
         //车次途经的车站
         /**--------------------------------------------------------------------------------------*/
         HttpEntity requestEntityGetRouteResult = new HttpEntity(null, headers);
-        ResponseEntity<Response<Route>> reGetRouteResult = restTemplate.exchange(
-                "http://ts-travel-service:12346/api/v1/travelservice/routes/" + tripId,
+        ResponseEntity<Response<List<String>>> responseEntityStations = restTemplate.exchange(
+                "http://ts-travel-service:12346/api/v1/travelservice/routes/" + tripId + "/stations",
                 HttpMethod.GET,
                 requestEntityGetRouteResult,
-                new ParameterizedTypeReference<Response<Route>>() {
+                new ParameterizedTypeReference<Response<List<String>>>() {
                 });
-        Response<Route> stationResult = reGetRouteResult.getBody();
+        Response<List<String>> stationResult = responseEntityStations.getBody();
 
         if (stationResult.getStatus() == 1) {
-            Route route = stationResult.getData();
-            List<String> stations = route.getStations();
+            List<String> stations = stationResult.getData();
             //去除不经过的站，如果起点终点有的话
-            if (null != startStation && !"".equals(startStation)) {
-                /**--------------------------------------------------------------------------------------*/
-                HttpEntity requestEntityStartStationId = new HttpEntity(headers);
-                ResponseEntity<Response<String>> reStartStationId = restTemplate.exchange(
-                        "http://ts-station-service:12345/api/v1/stationservice/stations/id/" + startStation,
-                        HttpMethod.GET,
-                        requestEntityStartStationId,
-                        new ParameterizedTypeReference<Response<String>>() {
-                        });
-                Response<String> startStationId = reStartStationId.getBody();
+            List<String> stationNameList = new ArrayList<>();
+            if(Objects.nonNull(startStation) && !startStation.isEmpty()){
+                stationNameList.add(startStation);
+            }
+            if(Objects.nonNull(endStation) && !endStation.isEmpty()){
+                stationNameList.add(endStation);
+            }
+            List<String> stationIDList = getStationIdsByName(stationNameList, headers);
 
+            if(stationIDList.size()>1){
                 for (int i = 0; i < stations.size(); i++) {
-                    if (stations.get(i).equals(startStationId.getData())) {
+                    if (stations.get(i).equals(stationIDList.get(0))) {
                         break;
                     } else {
                         stations.remove(i);
                     }
                 }
-            }
-            if (null != endStation && !"".equals(endStation)) {
-                /**--------------------------------------------------------------------------------------*/
-                HttpEntity requestEntityEndStationId = new HttpEntity(headers);
-                ResponseEntity<Response<String>> reEndStationId = restTemplate.exchange(
-                        "http://ts-station-service:12345/api/v1/stationservice/stations/id/" + endStation,
-                        HttpMethod.GET,
-                        requestEntityEndStationId,
-                        new ParameterizedTypeReference<Response<String>>() {
-                        });
-                Response endStationId = reEndStationId.getBody();
 
                 for (int i = stations.size() - 1; i >= 0; i--) {
-                    if (stations.get(i).equals(endStationId.getData())) {
+                    if (stations.get(i).equals(stationIDList.get(1))) {
                         break;
                     } else {
                         stations.remove(i);
@@ -210,5 +196,16 @@ public class FoodServiceImpl implements FoodService {
         allTripFood.setTrainFoodList(trainFoodList);
         allTripFood.setFoodStoreListMap(foodStoreListMap);
         return new Response<>(1, "Get All Food Success", allTripFood);
+    }
+
+    private List<String> getStationIdsByName(List<String> stationNameList, HttpHeaders headers) {
+        HttpEntity requestEntity = new HttpEntity(stationNameList, headers);
+        ResponseEntity<Response<List<String>>> reEndStationId = restTemplate.exchange(
+                "http://ts-station-service:12345/api/v1/stationservice/stations/idlist",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<Response<List<String>>>() {
+                });
+        return reEndStationId.getBody().getData();
     }
 }

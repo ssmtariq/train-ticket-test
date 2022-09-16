@@ -62,6 +62,23 @@ public class TravelServiceImpl implements TravelService {
     }
 
     @Override
+    public Response getRouteStationsByTripId(String tripId, HttpHeaders headers){
+        List<String> stations = new ArrayList<>();
+        if (null != tripId && tripId.length() >= 2) {
+            TripId tripId1 = new TripId(tripId);
+            Trip trip = repository.findByTripId(tripId1);
+            if (trip != null) {
+                stations = getRouteStationsByRouteId(trip.getRouteId(), headers);
+            }
+        }
+        if (!stations.isEmpty()) {
+            return new Response<>(1, success, stations);
+        } else {
+            return new Response<>(0, noContent, null);
+        }
+    }
+
+    @Override
     public Response getTrainTypeByTripId(String tripId, HttpHeaders headers) {
         TripId tripId1 = new TripId(tripId);
         TrainType trainType = null;
@@ -334,6 +351,16 @@ public class TravelServiceImpl implements TravelService {
             route1 = JsonUtils.conveterObject(routeRes.getData(), Route.class);
         }
         return route1;
+    }
+
+    private List<String> getRouteStationsByRouteId(String routeId, HttpHeaders headers) {
+        HttpEntity requestEntity = new HttpEntity(headers);
+        ResponseEntity<Response> re = restTemplate.exchange(
+                "http://ts-route-service:11178/api/v1/routeservice/routes/" + routeId +"/stations",
+                HttpMethod.GET,
+                requestEntity,
+                Response.class);
+        return (List<String>) re.getBody().getData();
     }
 
     private int getRestTicketNumber(Date travelDate, String trainNumber, String startStationName, String endStationName, int seatType, HttpHeaders headers) {

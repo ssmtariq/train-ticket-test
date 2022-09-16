@@ -2,15 +2,16 @@ package route.service;
 
 import edu.fudan.common.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import route.entity.Route;
 import route.entity.RouteInfo;
 import route.repository.RouteRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author fdse
@@ -20,6 +21,9 @@ public class RouteServiceImpl implements RouteService {
 
     @Autowired
     private RouteRepository routeRepository;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     String success = "Success";
 
@@ -85,6 +89,19 @@ public class RouteServiceImpl implements RouteService {
             return new Response<>(1, success, route);
         }
 
+    }
+
+    @Override
+    public Response getStationsByRouteId(String routeId, HttpHeaders headers){
+        Query query = new Query();
+        query.fields().include("stations");
+        query.addCriteria(Criteria.where("_id").is(routeId));
+        List<Map> stationsMap = mongoTemplate.find(query, Map.class, "routes");
+        if (stationsMap.isEmpty()) {
+            return new Response<>(0, "No content with the routeId", null);
+        } else {
+            return new Response<>(1, success, (List<String>) stationsMap.get(0).get("stations"));
+        }
     }
 
     @Override

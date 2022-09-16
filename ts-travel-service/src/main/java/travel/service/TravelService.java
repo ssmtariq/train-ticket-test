@@ -26,6 +26,8 @@ public interface TravelService {
 
     Response getRouteByTripId(String tripId, HttpHeaders headers);
 
+    Response getRouteStationsByTripId(String tripId, HttpHeaders headers);
+
     Response getTrainTypeByTripId(String tripId, HttpHeaders headers);
 
     Response queryAll(HttpHeaders headers);

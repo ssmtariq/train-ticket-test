@@ -44,6 +44,13 @@ public class TravelController {
         return ok(travelService.getRouteByTripId(tripId, headers));
     }
 
+    @GetMapping(value = "/routes/{tripId}/stations")
+    public HttpEntity getRouteStationsByTripId(@PathVariable String tripId,
+                                       @RequestHeader HttpHeaders headers) {
+        //Route
+        return ok(travelService.getRouteStationsByTripId(tripId, headers));
+    }
+
     @PostMapping(value = "/trips/routes")
     public HttpEntity getTripsByRouteId(@RequestBody ArrayList<String> routeIds,
                                         @RequestHeader HttpHeaders headers) {

@@ -38,6 +38,15 @@ public interface RouteService {
     Response getRouteById(String routeId, HttpHeaders headers);
 
     /**
+     * get stations by route id
+     *
+     * @param routeId route id
+     * @param headers headers
+     * @return Response
+     */
+    Response getStationsByRouteId(String routeId, HttpHeaders headers);
+
+    /**
      * delete route by id
      *
      * @param routeId route id

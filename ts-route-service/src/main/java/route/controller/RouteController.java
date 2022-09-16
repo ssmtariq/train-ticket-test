@@ -40,6 +40,11 @@ public class RouteController {
         return ok(routeService.getRouteById(routeId, headers));
     }
 
+    @GetMapping(path = "/routes/{routeId}/stations")
+    public HttpEntity getStationsById(@PathVariable String routeId, @RequestHeader HttpHeaders headers) {
+        return ok(routeService.getStationsByRouteId(routeId, headers));
+    }
+
     @GetMapping(path = "/routes")
     public HttpEntity queryAll(@RequestHeader HttpHeaders headers) {
         return ok(routeService.getAllRoutes(headers));
