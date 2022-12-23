@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAsync
 @IntegrationComponentScan
-@EnableSwagger2
+// @EnableSwagger2
 public class TravelApplication {
 
     public static void main(String[] args) {
