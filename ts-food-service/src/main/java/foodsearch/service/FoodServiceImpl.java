@@ -116,7 +116,7 @@ public class FoodServiceImpl implements FoodService {
 
 
     @Override
-    @SperfAnno(monitorObject="getAllFood")
+    @SperfAnno(monitorObject="Route")
     public Response getAllFood(String date, String startStation, String endStation, String tripId, HttpHeaders headers) {
         FoodServiceImpl.LOGGER.info("data={} start={} end={} tripid={}", date, startStation, endStation, tripId);
         AllTripFood allTripFood = new AllTripFood();

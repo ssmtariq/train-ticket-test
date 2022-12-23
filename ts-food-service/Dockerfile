@@ -48,8 +48,8 @@ ENV LD_LIBRARY_PATH $JXPerf_HOME/bin/kissmalloc:$JXPerf_HOME/build/preload:$LD_L
 ENV JAVA_AGENT $JXPerf_HOME/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar
 
 #Replace with instrumenting class package
-RUN sed -i 's/replaceWithClassName/edu\/fudan\/common\//' /sperf/thirdparty/allocation-instrumenter/src/main/java/com/google/monitoring/runtime/instrumentation/AllocationInstrumenter.java
-RUN grep -C 0 "fudan" /sperf/thirdparty/allocation-instrumenter/src/main/java/com/google/monitoring/runtime/instrumentation/AllocationInstrumenter.java
+# RUN sed -i 's/replaceWithClassName/edu\/fudan\/common\//' /sperf/thirdparty/allocation-instrumenter/src/main/java/com/google/monitoring/runtime/instrumentation/AllocationInstrumenter.java
+# RUN grep -C 0 "fudan" /sperf/thirdparty/allocation-instrumenter/src/main/java/com/google/monitoring/runtime/instrumentation/AllocationInstrumenter.java
 
 RUN make -j
 
