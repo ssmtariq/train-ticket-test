@@ -1385,9 +1385,9 @@ spec:
           ports:
             - containerPort: 14578
           resources:
-            requests:
-              cpu: 200m
-              memory: 500Mi
+            # requests:
+            #   cpu: 200m
+            #   memory: 500Mi
             # limits:
             #   cpu: 200m
             #   memory: 500Mi
@@ -1400,6 +1400,55 @@ spec:
       volumes:
         - name: cache-volume
           emptyDir: {}
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: ts-route-plan-service
+# spec:
+#   selector:
+#     matchLabels:
+#       app: ts-route-plan-service
+#   replicas: 1
+#   template:
+#     metadata:
+#       labels:
+#         app: ts-route-plan-service
+#     spec:
+#       containers:
+#         - name: ts-route-plan-service
+#           image: ssmtariq/ts-route-plan-service:original
+#           imagePullPolicy: IfNotPresent
+#           env:
+#             - name: OPENTRACING_ENABLED
+#               value: "true"
+#             - name: JAEGER_SAMPLER_TYPE
+#               value: "const"
+#             - name: JAEGER_SAMPLER_PARAM
+#               value: "1"
+#             - name: LATENCY_SAMPLER_PARAM
+#               value: "1"
+#             - name: ES_SERVER_URLS
+#               value: http://192.168.226.66:9200
+#             - name: ES_TAGS_AS_FIELDS_ALL
+#               value: "true"
+#             - name: SPAN_STORAGE_TYPE
+#               value: elasticsearch
+#           ports:
+#             - containerPort: 14578
+#           resources:
+#             requests:
+#               cpu: 50m
+#               memory: 160Mi
+#             limits:
+#               cpu: 200m
+#               memory: 500Mi
+#           readinessProbe:
+#             tcpSocket:
+#               port: 14578
+#             initialDelaySeconds: 160
+#             periodSeconds: 10
+#             timeoutSeconds: 5
 ---
 
 apiVersion: apps/v1
@@ -1768,8 +1817,8 @@ spec:
     spec:
       containers:
         - name: ts-train-service
-          image: ssmtariq/ts-train-service:master
-          imagePullPolicy: Always
+          image: ssmtariq/ts-train-service:original
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -1818,8 +1867,8 @@ spec:
     spec:
       containers:
         - name: ts-travel2-service
-          image: ssmtariq/ts-travel2-service:master3
-          imagePullPolicy: Always
+          image: ssmtariq/ts-travel2-service:original
+          imagePullPolicy: IfNotPresent
           env:
             - name: EXT_REQUESTS
               value: "1"
