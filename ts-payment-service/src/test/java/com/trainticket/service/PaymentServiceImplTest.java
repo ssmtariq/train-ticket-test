@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(JUnit4.class)
 public class PaymentServiceImplTest {
@@ -91,7 +92,7 @@ public class PaymentServiceImplTest {
     @Test
     public void testInitPayment2() {
         Payment payment = new Payment();
-        Mockito.when(paymentRepository.findById(Mockito.anyString())).thenReturn(payment);
+        Mockito.when(paymentRepository.findById(Mockito.anyString())).thenReturn(Optional.of(payment));
         Mockito.when(paymentRepository.save(Mockito.any(Payment.class))).thenReturn(null);
         paymentServiceImpl.initPayment(payment, headers);
         Mockito.verify(paymentRepository, Mockito.times(0)).save(Mockito.any(Payment.class));

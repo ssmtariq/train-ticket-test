@@ -28,6 +28,7 @@ public class PreserveServiceImpl implements PreserveService {
     private static final Logger LOGGER = LoggerFactory.getLogger(PreserveServiceImpl.class);
 
     @Override
+    @SperfAnno(monitorObject="Trip")
     public Response preserve(OrderTicketsInfo oti, HttpHeaders headers) {
         //1.detect ticket scalper
         PreserveServiceImpl.LOGGER.info("[Preserve Service] [Step 1] Check Security");

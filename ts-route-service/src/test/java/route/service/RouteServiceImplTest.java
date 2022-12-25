@@ -17,6 +17,7 @@ import route.repository.RouteRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(JUnit4.class)
 public class RouteServiceImplTest {
@@ -70,7 +71,7 @@ public class RouteServiceImplTest {
     public void testDeleteRoute2() {
         Route route = new Route();
         Mockito.doNothing().doThrow(new RuntimeException()).when(routeRepository).removeRouteById(Mockito.anyString());
-        Mockito.when(routeRepository.findById(Mockito.anyString())).thenReturn(route);
+        Mockito.when(routeRepository.findById(Mockito.anyString())).thenReturn(Optional.of(route));
         Response result = routeServiceImpl.deleteRoute("route_id", headers);
         Assert.assertEquals(new Response<>(0, "Delete failed, Reason unKnown with this routeId", "route_id"), result);
     }
@@ -85,7 +86,7 @@ public class RouteServiceImplTest {
     @Test
     public void testGetRouteById2() {
         Route route = new Route();
-        Mockito.when(routeRepository.findById(Mockito.anyString())).thenReturn(route);
+        Mockito.when(routeRepository.findById(Mockito.anyString())).thenReturn(Optional.of(route));
         Response result = routeServiceImpl.getRouteById("route_id", headers);
         Assert.assertEquals(new Response<>(1, "Success", route), result);
     }

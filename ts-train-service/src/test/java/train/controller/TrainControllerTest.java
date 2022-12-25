@@ -21,6 +21,7 @@ import train.service.TrainService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(JUnit4.class)
 public class TrainControllerTest {
@@ -79,7 +80,7 @@ public class TrainControllerTest {
     @Test
     public void testRetrieve2() throws Exception {
         TrainType trainType = new TrainType();
-        Mockito.when(trainService.retrieve(Mockito.anyString(), Mockito.any(HttpHeaders.class))).thenReturn(trainType);
+        Mockito.when(trainService.retrieve(Mockito.anyString(), Mockito.any(HttpHeaders.class))).thenReturn(Optional.of(trainType));
         String result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/trainservice/trains/id"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();

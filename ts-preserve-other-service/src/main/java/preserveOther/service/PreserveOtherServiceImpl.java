@@ -28,6 +28,7 @@ public class PreserveOtherServiceImpl implements PreserveOtherService {
     private static final Logger LOGGER = LoggerFactory.getLogger(PreserveOtherServiceImpl.class);
 
     @Override
+    @SperfAnno(monitorObject="Trip")
     public Response preserve(OrderTicketsInfo oti, HttpHeaders httpHeaders) {
 
         PreserveOtherServiceImpl.LOGGER.info("[Preserve Other Service][Verify Login] Success");

@@ -4,6 +4,13 @@ server:
 spring:
   application:
     name: ts-user-service
+  lifecycle:
+    timeout-per-shutdown-phase: "60s"
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   data:
     mongodb:
       host: ts-user-mongo

@@ -5,6 +5,13 @@ server:
 spring:
   application:
     name: ts-travel2-service
+  lifecycle:
+    timeout-per-shutdown-phase: "60s"
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   data:
     mongodb:
       host: ts-travel2-mongo

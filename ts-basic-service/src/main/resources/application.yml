@@ -4,7 +4,13 @@ server:
 spring:
   application:
     name: ts-basic-service
-
+  lifecycle:
+    timeout-per-shutdown-phase: "60s"
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 swagger:
   controllerPackage: fdse.microservice.controller
 

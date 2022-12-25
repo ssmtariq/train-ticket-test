@@ -7,6 +7,7 @@ import train.entity.TrainType;
 import train.repository.TrainTypeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TrainServiceImpl implements TrainService {
@@ -28,7 +29,7 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public TrainType retrieve(String id, HttpHeaders headers) {
+    public Optional<TrainType> retrieve(String id, HttpHeaders headers) {
         if (repository.findById(id) == null) {
             return null;
         } else {

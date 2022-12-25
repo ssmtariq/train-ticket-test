@@ -63,6 +63,7 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
+    @SperfAnno(monitorObject="PriceConfig")
     public Response findByRouteIdAndTrainType(String routeId, String trainType, HttpHeaders headers) {
         PriceServiceImpl.LOGGER.info("[Price Service][Find By Route And Train Type] Rote: {}   Train Type: {}", routeId, trainType);
         PriceConfig priceConfig = priceConfigRepository.findByRouteIdAndTrainType(routeId, trainType);

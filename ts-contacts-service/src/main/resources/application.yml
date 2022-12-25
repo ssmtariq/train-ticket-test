@@ -4,6 +4,13 @@ server:
 spring:
   application:
     name: ts-contacts-service
+  lifecycle:
+    timeout-per-shutdown-phase: "60s"
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   data:
     mongodb:
       host: ts-contacts-mongo

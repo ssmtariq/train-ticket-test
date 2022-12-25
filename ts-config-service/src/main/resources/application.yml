@@ -1,13 +1,20 @@
 spring:
-    application:
-      name: ts-config-service
-    data:
-      mongodb:
-        host: ts-config-mongo
+  application:
+    name: ts-config-service
+  lifecycle:
+    timeout-per-shutdown-phase: "60s"
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  data:
+    mongodb:
+      host: ts-config-mongo
 #       username: user
 #       password: ${MONGODB_PASSWORD}
-        database: ts
-        port: 27017
+      database: ts
+      port: 27017
 
 # HTTP Server
 server:

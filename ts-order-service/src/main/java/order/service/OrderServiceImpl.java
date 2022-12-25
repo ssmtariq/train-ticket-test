@@ -31,7 +31,9 @@ public class OrderServiceImpl implements OrderService {
     String orderNotFound = "Order Not Found";
 
     @Override
+    @SperfAnno(monitorObject="Order")
     public Response getSoldTickets(Seat seatRequest, HttpHeaders headers) {
+        System.out.println("method getSoldTickets is called!");
         ArrayList<Order> list = orderRepository.findByTravelDateAndTrainNumber(seatRequest.getTravelDate(),
                 seatRequest.getTrainNumber());
         if (list != null && !list.isEmpty()) {
