@@ -107,6 +107,7 @@ public class TravelPlanServiceImpl implements TravelPlanService {
     }
 
     @Override
+    @SperfAnno(monitorObject="RoutePlanInfo")
     public Response getQuickest(TripInfo info, HttpHeaders headers) {
         RoutePlanInfo routePlanInfo = new RoutePlanInfo();
         routePlanInfo.setNum(5);

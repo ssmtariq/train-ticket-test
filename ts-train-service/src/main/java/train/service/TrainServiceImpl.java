@@ -29,6 +29,7 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
+    @SperfAnno(monitorObject="TrainType")
     public Optional<TrainType> retrieve(String id, HttpHeaders headers) {
         if (repository.findById(id) == null) {
             return null;

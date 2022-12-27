@@ -75,6 +75,7 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
+    @SperfAnno(monitorObject="Station")
     public Response queryForId(String stationName, HttpHeaders headers) {
         Station station = repository.findByName(stationName);
 
