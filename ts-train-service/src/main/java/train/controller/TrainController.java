@@ -40,7 +40,7 @@ public class TrainController {
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/trains/{id}")
     public HttpEntity retrieve(@PathVariable String id, @RequestHeader HttpHeaders headers) {
-        TrainType trainType = trainService.retrieve(id, headers).get();
+        TrainType trainType = trainService.retrieve(id, headers);
         if (trainType == null) {
             return ok(new Response(0, "here is no TrainType with the trainType id: " + id, null));
         } else {

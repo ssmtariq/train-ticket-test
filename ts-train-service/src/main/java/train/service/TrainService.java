@@ -10,7 +10,7 @@ public interface TrainService {
     //CRUD
     boolean create(TrainType trainType, HttpHeaders headers);
 
-    Optional<TrainType> retrieve(String id, HttpHeaders headers);
+    TrainType retrieve(String id, HttpHeaders headers);
 
     boolean update(TrainType trainType,HttpHeaders headers);
 

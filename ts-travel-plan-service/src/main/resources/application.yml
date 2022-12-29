@@ -5,7 +5,13 @@ server:
 spring:
   application:
     name: ts-travel-plan-service
-
+  lifecycle:
+    timeout-per-shutdown-phase: "60s"
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 swagger:
   controllerPackage: travelplan.controller
