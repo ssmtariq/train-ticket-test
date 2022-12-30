@@ -164,6 +164,7 @@ public class Travel2ServiceImpl implements Travel2Service {
     }
 
     @Override
+    @SperfAnno(monitorObject="TripResponse")
     public Response getTripAllDetailInfo(TripAllDetailInfo gtdi, HttpHeaders headers) {
         TripAllDetail gtdr = new TripAllDetail();
         Trip trip = repository.findByTripId(new TripId(gtdi.getTripId()));

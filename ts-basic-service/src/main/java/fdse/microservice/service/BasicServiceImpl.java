@@ -27,6 +27,7 @@ public class BasicServiceImpl implements BasicService {
     private static final Logger LOGGER = LoggerFactory.getLogger(BasicServiceImpl.class);
 
     @Override
+    @SperfAnno(monitorObject="TrainType")
     public Response queryForTravel(Travel info, HttpHeaders headers) {
 
         Response response = new Response<>();

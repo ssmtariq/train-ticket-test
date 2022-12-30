@@ -50,7 +50,7 @@ public class RouteServiceImpl implements RouteService {
 
             return new Response<>(1, "Save Success", route);
         } else {
-            Route route = routeRepository.findById(info.getId()).get();
+            Route route = routeRepository.findById(info.getId()).isPresent()?routeRepository.findById(info.getId()).get():null;
             if (route == null) {
                 route = new Route();
                 route.setId(info.getId());
@@ -77,6 +77,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
+    @SperfAnno(monitorObject="Route")
     public Response getRouteById(String routeId, HttpHeaders headers) {
         Route route = routeRepository.findById(routeId).get();
         if (route == null) {

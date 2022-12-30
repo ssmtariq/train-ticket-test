@@ -109,9 +109,9 @@ public class StationServiceImpl implements StationService {
 
     @Override
     public Response queryById(String stationId, HttpHeaders headers) {
-        Optional<Station> station = repository.findById(stationId);
+        Station station = repository.findById(stationId).isPresent()?repository.findById(stationId).get():null;
         if (station != null) {
-            return new Response<>(1, success, station.get().getName());
+            return new Response<>(1, success, station.getName());
         } else {
             return new Response<>(0, "No that stationId", stationId);
         }
@@ -121,9 +121,9 @@ public class StationServiceImpl implements StationService {
     public Response queryByIdBatch(List<String> idList, HttpHeaders headers) {
         ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < idList.size(); i++) {
-            Optional<Station> station = repository.findById(idList.get(i));
+            Station station = repository.findById(idList.get(i)).isPresent()?repository.findById(idList.get(i)).get():null;
             if (station != null) {
-                result.add(station.get().getName());
+                result.add(station.getName());
             }
         }
 

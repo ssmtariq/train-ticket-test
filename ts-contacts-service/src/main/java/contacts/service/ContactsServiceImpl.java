@@ -27,6 +27,7 @@ public class ContactsServiceImpl implements ContactsService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactsServiceImpl.class);
 
     @Override
+    @SperfAnno(monitorObject="Contacts")
     public Response findContactsById(UUID id, HttpHeaders headers) {
         LOGGER.info("FIND CONTACTS BY ID: " + id);
         Contacts contacts = contactsRepository.findById(id);

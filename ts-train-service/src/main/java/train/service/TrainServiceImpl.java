@@ -31,10 +31,11 @@ public class TrainServiceImpl implements TrainService {
     @Override
     @SperfAnno(monitorObject="TrainType")
     public TrainType retrieve(String id, HttpHeaders headers) {
-        if (repository.findById(id).get() == null) {
+        TrainType trainType = repository.findById(id).isPresent()?repository.findById(id).get():null;
+        if (trainType == null) {
             return null;
         } else {
-            return repository.findById(id).get();
+            return trainType;
         }
     }
 
