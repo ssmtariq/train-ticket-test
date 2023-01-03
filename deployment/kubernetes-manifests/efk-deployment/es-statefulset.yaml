@@ -77,10 +77,10 @@ spec:
         name: elasticsearch-logging
         resources:
           # need more cpu upon initialization, therefore burstable class
-          limits:
-            cpu: 1000m
-          requests:
-            cpu: 100m
+          # limits:
+          #   cpu: 1000m
+          # requests:
+          #   cpu: 100m
         ports:
         - containerPort: 9200
           name: db
