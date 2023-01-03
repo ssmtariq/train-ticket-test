@@ -604,16 +604,10 @@ spec:
       labels:
         app: ts-contacts-service
     spec:
-      terminationGracePeriodSeconds: 30
       containers:
         - name: ts-contacts-service
-          image: ssmtariq/ts-contacts-service:sperf
-          imagePullPolicy: Always
-          securityContext:
-            privileged: true
-          volumeMounts:
-          - mountPath: /cache
-            name: cache-volume
+          image: ssmtariq/ts-contacts-service:original
+          imagePullPolicy: IfNotPresent
           env:
             - name: OPENTRACING_ENABLED
               value: "true"
@@ -629,76 +623,21 @@ spec:
               value: "true"
             - name: SPAN_STORAGE_TYPE
               value: elasticsearch
-            - name: LD_PRELOAD
-              value: "/sperf/build/preload/libpreload.so"
-          args: [ "java", "-javaagent:/sperf/thirdparty/allocation-instrumenter/target/java-allocation-instrumenter-HEAD-SNAPSHOT.jar", "-agentpath:/sperf/build/libagent.so=ObjectUsage::MEM_LOAD_UOPS_RETIRED:L1_MISS:precise=2@10000", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "-jar", "/app/ts-contacts-service-1.0.jar" ]
           ports:
             - containerPort: 12347
           resources:
             # requests:
+            #   cpu: 50m
+            #   memory: 160Mi
+            # limits:
             #   cpu: 200m
             #   memory: 500Mi
-            # limits:
-            #  cpu: 200m
-            #  memory: 500Mi
           readinessProbe:
             tcpSocket:
               port: 12347
-            # initialDelaySeconds: 160
-            # periodSeconds: 10
-            # timeoutSeconds: 5
-      volumes:
-        - name: cache-volume
-          emptyDir: {}
-
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: ts-contacts-service
-# spec:
-#   selector:
-#     matchLabels:
-#       app: ts-contacts-service
-#   replicas: 1
-#   template:
-#     metadata:
-#       labels:
-#         app: ts-contacts-service
-#     spec:
-#       containers:
-#         - name: ts-contacts-service
-#           image: ssmtariq/ts-contacts-service:original
-#           imagePullPolicy: IfNotPresent
-#           env:
-#             - name: OPENTRACING_ENABLED
-#               value: "true"
-#             - name: JAEGER_SAMPLER_TYPE
-#               value: "const"
-#             - name: JAEGER_SAMPLER_PARAM
-#               value: "1"
-#             - name: LATENCY_SAMPLER_PARAM
-#               value: "1"
-#             - name: ES_SERVER_URLS
-#               value: http://192.168.226.66:9200
-#             - name: ES_TAGS_AS_FIELDS_ALL
-#               value: "true"
-#             - name: SPAN_STORAGE_TYPE
-#               value: elasticsearch
-#           ports:
-#             - containerPort: 12347
-#           resources:
-#             # requests:
-#             #   cpu: 50m
-#             #   memory: 160Mi
-#             # limits:
-#             #   cpu: 200m
-#             #   memory: 500Mi
-#           readinessProbe:
-#             tcpSocket:
-#               port: 12347
-#             initialDelaySeconds: 160
-#             periodSeconds: 10
-#             timeoutSeconds: 5
+            initialDelaySeconds: 160
+            periodSeconds: 10
+            timeoutSeconds: 5
 ---
 
 apiVersion: apps/v1

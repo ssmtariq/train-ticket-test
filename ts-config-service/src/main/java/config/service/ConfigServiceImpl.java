@@ -47,6 +47,7 @@ public class ConfigServiceImpl implements ConfigService {
 
 
     @Override
+    @SperfAnno(monitorObject="Config")
     public Response query(String name, HttpHeaders headers) {
         Config config = repository.findByName(name);
         if (config == null) {
