@@ -17,6 +17,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 @RequestMapping("/api/v1/orderOtherService")
 public class OrderOtherController {
+    // private static int REQUEST_COUNTER=0;
 
     @Autowired
     private OrderOtherService orderService;
@@ -28,9 +29,13 @@ public class OrderOtherController {
     }
 
     /***************************For Normal Use***************************/
-
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/orderOther/tickets")
     public HttpEntity getTicketListByDateAndTripId(@RequestBody Seat seatRequest, @RequestHeader HttpHeaders headers) {
+        // if(REQUEST_COUNTER==0){
+        //     System.out.println("Seat data: "+ seatRequest.toString());
+        //     REQUEST_COUNTER++;
+        // }
         return ok(orderService.getSoldTickets(seatRequest, headers));
     }
 
