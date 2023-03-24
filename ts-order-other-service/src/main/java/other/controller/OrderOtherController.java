@@ -31,13 +31,14 @@ public class OrderOtherController {
     }
 
     /***************************For Normal Use***************************/
-
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/orderOther/tickets")
     public HttpEntity getTicketListByDateAndTripId(@RequestBody Seat seatRequest, @RequestHeader HttpHeaders headers) {
         OrderOtherController.LOGGER.info("[Order Other Service][Get Sold Ticket] Date: {}", seatRequest.getTravelDate().toString());
         return ok(orderService.getSoldTickets(seatRequest, headers));
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/orderOther/tickets/destStation/list")
     public HttpEntity getDestStationListOfTicketsByDateAndTripId(@RequestBody Seat seatRequest, @RequestHeader HttpHeaders headers) {
         OrderOtherController.LOGGER.info("[Order Other Service][Get DestStation List of Sold Tickets] Date: {}", seatRequest.getTravelDate().toString());
