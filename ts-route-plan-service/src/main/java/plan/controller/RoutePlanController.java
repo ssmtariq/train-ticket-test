@@ -24,11 +24,13 @@ public class RoutePlanController {
         return "Welcome to [ RoutePlan Service ] !";
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/routePlan/cheapestRoute")
     public HttpEntity getCheapestRoutes(@RequestBody RoutePlanInfo info, @RequestHeader HttpHeaders headers) {
         return ok(routePlanService.searchCheapestResult(info, headers));
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/routePlan/quickestRoute")
     public HttpEntity getQuickestRoutes(@RequestBody RoutePlanInfo info, @RequestHeader HttpHeaders headers) {
         return ok(routePlanService.searchQuickestResult(info, headers));
