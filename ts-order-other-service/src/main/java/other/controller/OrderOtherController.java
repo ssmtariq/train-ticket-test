@@ -19,6 +19,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 @RequestMapping("/api/v1/orderOtherService")
 public class OrderOtherController {
+    private static int REQUEST_COUNTER=0;
 
     @Autowired
     private OrderOtherService orderService;
@@ -34,23 +35,27 @@ public class OrderOtherController {
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/orderOther/tickets")
     public HttpEntity getTicketListByDateAndTripId(@RequestBody Seat seatRequest, @RequestHeader HttpHeaders headers) {
-        OrderOtherController.LOGGER.info("[Order Other Service][Get Sold Ticket] Date: {}", seatRequest.getTravelDate().toString());
+        // OrderOtherController.LOGGER.info("[Order Other Service][Get Sold Ticket] Date: {}", seatRequest.getTravelDate().toString());
         return ok(orderService.getSoldTickets(seatRequest, headers));
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/orderOther/tickets/destStation/list")
     public HttpEntity getDestStationListOfTicketsByDateAndTripId(@RequestBody Seat seatRequest, @RequestHeader HttpHeaders headers) {
-        OrderOtherController.LOGGER.info("[Order Other Service][Get DestStation List of Sold Tickets] Date: {}", seatRequest.getTravelDate().toString());
+        // if(REQUEST_COUNTER==0){
+            // System.out.println("Seat data: "+ seatRequest.toString() + "HttpHeaders are: " + headers.toString());
+            // REQUEST_COUNTER++;
+        // }
+        // OrderOtherController.LOGGER.info("[Order Other Service][Get DestStation List of Sold Tickets] Date: {}", seatRequest.getTravelDate().toString());
         return ok(orderService.getDestStationListOfSoldTickets(seatRequest, headers));
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/orderOther")
     public HttpEntity createNewOrder(@RequestBody Order createOrder, @RequestHeader HttpHeaders headers) {
-        OrderOtherController.LOGGER.info("[Order Other Service][Create Order] Create Order form {}  ---> {} at {}", createOrder.getFrom(), createOrder.getTo(), createOrder.getTravelDate());
+        // OrderOtherController.LOGGER.info("[Order Other Service][Create Order] Create Order form {}  ---> {} at {}", createOrder.getFrom(), createOrder.getTo(), createOrder.getTravelDate());
 
-        OrderOtherController.LOGGER.info("[Order Other Service][Verify Login] Success");
+        // OrderOtherController.LOGGER.info("[Order Other Service][Verify Login] Success");
         return ok(orderService.create(createOrder, headers));
     }
 

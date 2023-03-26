@@ -46,6 +46,8 @@ public class OrderOtherServiceImpl implements OrderOtherService {
     String success = "Success";
     String orderNotFound = "Order Not Found";
 
+    private static final String MATERIALIZED_VIEW_NAME = "destStationList";
+
     @Override
     public Response getSoldTickets(Seat seatRequest, HttpHeaders headers) {
         ArrayList<Order> list = orderOtherRepository.findByTravelDateAndTrainNumber(seatRequest.getTravelDate(),
@@ -62,7 +64,7 @@ public class OrderOtherServiceImpl implements OrderOtherService {
 
             LeftTicketInfo leftTicketInfo = new LeftTicketInfo();
             leftTicketInfo.setSoldTickets(ticketSet);
-            OrderOtherServiceImpl.LOGGER.info("Left ticket info is: {}", leftTicketInfo.toString());
+            // OrderOtherServiceImpl.LOGGER.info("Left ticket info is: {}", leftTicketInfo.toString());
 
             return new Response<>(1, success, leftTicketInfo);
         } else {
@@ -74,7 +76,7 @@ public class OrderOtherServiceImpl implements OrderOtherService {
     public Response getDestStationListOfSoldTickets(Seat seatRequest, HttpHeaders headers) {
         List<String> destStations = getDestStationList(seatRequest.getTravelDate(), seatRequest.getTrainNumber());
         if (!destStations.isEmpty()) {
-            OrderOtherServiceImpl.LOGGER.info("DestStations are collected from a total of : {} tickets", destStations.size());
+            // OrderOtherServiceImpl.LOGGER.info("DestStations are collected from a total of : {} tickets", destStations.size());
             return new Response<>(1, success, destStations);
         } else {
             return new Response<>(0, "Seat is Null.", null);
@@ -88,17 +90,13 @@ public class OrderOtherServiceImpl implements OrderOtherService {
      * @return
      */
     private List<String> getDestStationList(Date travelDate, String trainNumber) {
-        String viewName = "destStationList";
         Aggregation agg = newAggregation(
                 match(Criteria.where("travelDate").is(travelDate).and("trainNumber").is(trainNumber)),
                 group().push("to").as("destStations"),
                 project().andExclude("_id")
         );
-        if(!mongoTemplate.collectionExists(viewName)){
-            createMaterializedView(viewName);
-        }
 
-        AggregationResults<Map> groupResults = mongoTemplate.aggregate(agg, viewName, Map.class);
+        AggregationResults<Map> groupResults = mongoTemplate.aggregate(agg, MATERIALIZED_VIEW_NAME, Map.class);
         List<Map> result = groupResults.getMappedResults();
 
         if(!result.isEmpty()){
@@ -141,9 +139,9 @@ public class OrderOtherServiceImpl implements OrderOtherService {
         String viewName = "destStationList";
         String fieldName = "destStations";
 
-        if(!mongoTemplate.collectionExists(viewName)){
+        // if(!mongoTemplate.collectionExists(viewName)){
             createView(viewName);
-        }
+        // }
 
         Aggregation agg = newAggregation(
                 match(Criteria.where("travelDate").is(travelDate).and("trainNumber").is(trainNumber)),
@@ -177,11 +175,15 @@ public class OrderOtherServiceImpl implements OrderOtherService {
         }
     }
 
-    private void createMaterializedView(String viewName) {
+    /*
+     * Create materialized view if not exists otherwise update with new data
+     */
+    private void updateMaterializedView(String viewName) {
         String collectionName = "orders";
-        // Attempt to create the view
-        if(mongoTemplate.collectionExists(viewName)){
-            mongoTemplate.dropCollection(viewName);
+        // Check if the view is created or updated
+        String operation = "updated";
+        if(!mongoTemplate.collectionExists(viewName)){
+            operation = "created";
         }
 
         CommandResult result = mongoTemplate.executeCommand("{" +
@@ -191,10 +193,10 @@ public class OrderOtherServiceImpl implements OrderOtherService {
                 "}");
 
         if(result.ok()) {
-            LOGGER.info("Successfully created view '{}' on collection '{}'", viewName, collectionName);
+            // LOGGER.info("Successfully "+operation+" view '{}' on collection '{}'", viewName, collectionName);
         }
         else {
-            System.out.println("Failed to create view '" + viewName + "' on collection '" + collectionName + "' - " + result.getErrorMessage());
+            System.out.println("Failed to "+operation+" view '" + viewName + "' on collection '" + collectionName + "' - " + result.getErrorMessage());
         }
     }
 
@@ -210,16 +212,17 @@ public class OrderOtherServiceImpl implements OrderOtherService {
 
     @Override
     public Response create(Order order, HttpHeaders headers) {
-        OrderOtherServiceImpl.LOGGER.info("[Order Other Service][Create Order] Ready Create Order");
+        // OrderOtherServiceImpl.LOGGER.info("[Order Other Service][Create Order] Ready Create Order");
         ArrayList<Order> accountOrders = orderOtherRepository.findByAccountId(order.getAccountId());
         if (accountOrders.contains(order)) {
-            OrderOtherServiceImpl.LOGGER.info("[Order Other Service][Order Create] Fail.Order already exists.");
+            // OrderOtherServiceImpl.LOGGER.info("[Order Other Service][Order Create] Fail.Order already exists.");
             return new Response<>(0, "Order already exist", order);
         } else {
             order.setId(UUID.randomUUID());
             orderOtherRepository.save(order);
-            OrderOtherServiceImpl.LOGGER.info("[Order Other Service][Order Create] Success.");
-            OrderOtherServiceImpl.LOGGER.info("[Order Other Service][Order Create] Price: {}", order.getPrice());
+            updateMaterializedView(MATERIALIZED_VIEW_NAME);
+            // OrderOtherServiceImpl.LOGGER.info("[Order Other Service][Order Create] Success.");
+            // OrderOtherServiceImpl.LOGGER.info("[Order Other Service][Order Create] Price: {}", order.getPrice());
             return new Response<>(1, success, order);
         }
     }
