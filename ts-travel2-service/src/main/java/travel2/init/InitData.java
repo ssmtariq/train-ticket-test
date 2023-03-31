@@ -87,94 +87,94 @@ public class InitData implements CommandLineRunner {
         info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
         service.create(info,null);
 
-        info.setTripId("Z1238");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("7b8c0886-1dc9-42a7-b1c0-ae351cd8e683");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
+//        info.setTripId("Z1238");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("7b8c0886-1dc9-42a7-b1c0-ae351cd8e683");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
 
-        info.setTripId("Z1239");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("88b74fde-db80-477c-9bee-2ef3d8fe5b19");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
+//        info.setTripId("Z1239");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("88b74fde-db80-477c-9bee-2ef3d8fe5b19");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
 
-        info.setTripId("Z1240");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("6ba359a7-4de2-4810-9bc8-28a94a3c3848");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
+//        info.setTripId("Z1240");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("6ba359a7-4de2-4810-9bc8-28a94a3c3848");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
 
-        info.setTripId("Z1241");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("39bfb3b3-9369-40c4-9c93-b5b6ee5dd76d");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
+//        info.setTripId("Z1241");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("39bfb3b3-9369-40c4-9c93-b5b6ee5dd76d");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
+//
+//        info.setTripId("Z1242");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("ebfea9d2-b1e8-40e8-a8d1-f20b4897e4f4");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
 
-        info.setTripId("Z1242");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("ebfea9d2-b1e8-40e8-a8d1-f20b4897e4f4");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
-
-        info.setTripId("Z1243");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("4813b2da-cb02-4824-bf05-3cfcdee1da61");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
-
-        info.setTripId("Z1244");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("ba43ab68-978c-4d51-b3fb-26766d909c7b");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
-
-        info.setTripId("Z1245");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("a11f1e49-f24a-4db1-9eff-a47cc2a9afc4");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
-
-        info.setTripId("Z1246");
-        info.setTrainTypeId(zhiDa);
-        info.setRouteId("89de9a9b-5108-48c1-a564-b02833ebfe39");
-        info.setStartingStationId(shanghai);
-        info.setStationsId(nanjing);
-        info.setTerminalStationId(beijing);
-        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
-        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
-        service.create(info,null);
+//        info.setTripId("Z1243");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("4813b2da-cb02-4824-bf05-3cfcdee1da61");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
+//
+//        info.setTripId("Z1244");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("ba43ab68-978c-4d51-b3fb-26766d909c7b");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
+//
+//        info.setTripId("Z1245");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("a11f1e49-f24a-4db1-9eff-a47cc2a9afc4");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
+//
+//        info.setTripId("Z1246");
+//        info.setTrainTypeId(zhiDa);
+//        info.setRouteId("89de9a9b-5108-48c1-a564-b02833ebfe39");
+//        info.setStartingStationId(shanghai);
+//        info.setStationsId(nanjing);
+//        info.setTerminalStationId(beijing);
+//        info.setStartingTime(new Date("Mon May 04 7:05:52 GMT+0800 2013")); //NOSONAR
+//        info.setEndTime(new Date("Mon May 04 12:51:52 GMT+0800 2013")); //NOSONAR
+//        service.create(info,null);
     }
 }
