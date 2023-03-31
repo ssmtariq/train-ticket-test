@@ -12,7 +12,9 @@ import org.springframework.web.client.RestTemplate;
 import plan.entity.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * @author fdse
@@ -90,37 +92,17 @@ public class RoutePlanServiceImpl implements RoutePlanService {
         queryInfo.setDepartureTime(info.getTravelDate());
 
         ArrayList<TripResponse> highSpeed = getTripFromHighSpeedTravelServive(queryInfo, headers);
-        ArrayList<TripResponse> normalTrain = getTripFromNormalTrainTravelService(queryInfo, headers);
-
-        //2.Sort by time
-        ArrayList<TripResponse> finalResult = new ArrayList<>();
-
-        for (TripResponse tr : highSpeed) {
-            finalResult.add(tr);
-        }
-        for (TripResponse tr : normalTrain) {
-            finalResult.add(tr);
-        }
-
-        long minTime;
-        int minIndex = -1;
-        int size = Math.min(finalResult.size(), 5);
         ArrayList<TripResponse> returnResult = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
 
-            minTime = Long.MAX_VALUE;
-            for (int j = 0; j < finalResult.size(); j++) {
-                TripResponse thisRes = finalResult.get(j);
-                if (thisRes.getEndTime().getTime() - thisRes.getStartingTime().getTime() < minTime) {
-                    minTime = thisRes.getEndTime().getTime() - thisRes.getStartingTime().getTime();
-                    minIndex = j;
-                }
-            }
-            returnResult.add(finalResult.get(minIndex));
-            finalResult.remove(minIndex);
+        //2.Sort by time using a min heap
+        PriorityQueue<TripResponse> sortedResult = new PriorityQueue<>(highSpeed.size(), Comparator.comparingLong(tr -> tr.getEndTime().getTime() - tr.getStartingTime().getTime()));
+        sortedResult.addAll(highSpeed);
 
+        // Get the top 5 results
+        int limit = Math.min(sortedResult.size(), 5);
+        for (int i = 0; i < limit; i++) {
+            returnResult.add(sortedResult.poll());
         }
-
 
         ArrayList<RoutePlanResultUnit> units = new ArrayList<>();
         for (int i = 0; i < returnResult.size(); i++) {
