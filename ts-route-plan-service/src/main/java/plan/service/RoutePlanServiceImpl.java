@@ -84,8 +84,8 @@ public class RoutePlanServiceImpl implements RoutePlanService {
 
     @Override
     public Response searchQuickestResult(RoutePlanInfo info, HttpHeaders headers) {
+        final int MAX_RESPONSE = 5;
 
-        //1.Violence pulls out all the results of travel-service and travle2-service
         TripInfo queryInfo = new TripInfo();
         queryInfo.setStartingPlace(info.getFormStationName());
         queryInfo.setEndPlace(info.getToStationName());
@@ -94,12 +94,27 @@ public class RoutePlanServiceImpl implements RoutePlanService {
         ArrayList<TripResponse> highSpeed = getTripFromHighSpeedTravelServive(queryInfo, headers);
         ArrayList<TripResponse> returnResult = new ArrayList<>();
 
-        //2.Sort by time using a min heap
-        PriorityQueue<TripResponse> sortedResult = new PriorityQueue<>(highSpeed.size(), Comparator.comparingLong(tr -> tr.getEndTime().getTime() - tr.getStartingTime().getTime()));
-        sortedResult.addAll(highSpeed);
+        PriorityQueue<TripResponse> sortedResult = null;
+        if(highSpeed.size()>=MAX_RESPONSE){
+            //Sort by time using a min heap
+            sortedResult = new PriorityQueue<>(highSpeed.size(), Comparator.comparingLong(tr -> tr.getEndTime().getTime() - tr.getStartingTime().getTime()));
+            sortedResult.addAll(highSpeed);
+        }else{
+            ArrayList<TripResponse> normalTrain = getTripFromNormalTrainTravelService(queryInfo, headers);
+            ArrayList<TripResponse> finalResult = new ArrayList<>();
+            finalResult.addAll(highSpeed);
+            int size = Math.min(MAX_RESPONSE, (highSpeed.size()+normalTrain.size()));
+            int index = 0;
+            while(finalResult.size()!=size){
+                finalResult.add(normalTrain.get(index));
+                index++;
+            }
+            sortedResult = new PriorityQueue<>(finalResult.size(), Comparator.comparingLong(tr -> tr.getEndTime().getTime() - tr.getStartingTime().getTime()));
+            sortedResult.addAll(finalResult);
+        }
 
         // Get the top 5 results
-        int limit = Math.min(sortedResult.size(), 5);
+        int limit = Math.min(sortedResult.size(), MAX_RESPONSE);
         for (int i = 0; i < limit; i++) {
             returnResult.add(sortedResult.poll());
         }
