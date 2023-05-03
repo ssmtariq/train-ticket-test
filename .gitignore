@@ -1,0 +1,18 @@
+# Java .gitignore
+*.class
+
+# Json2Shiviz
+Json2Shiviz/
+
+# Maven .gitignore
+target/
+
+# Eclipse Core
+.project
+
+# IDEA
+.idea/
+**/*.iml
+
+# Visual Studio Code project settings
+.vscode
